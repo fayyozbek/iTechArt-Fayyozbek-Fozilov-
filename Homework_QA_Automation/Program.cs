@@ -1,27 +1,26 @@
 ﻿using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 
 
 class Program{
 
     static void Main(string[] arg){
-       
-        IWebDriver driver= new FirefoxDriver(new FirefoxOptions());
-        driver.Url="https://uzmarketing.com/";
+       //step 1
+        IWebDriver driver= new FirefoxDriver(new FirefoxOptions());//opening FireFox browser
+        driver.Url="https://uzmarketing.com/";// move to website by link
+        //step 2
         driver.FindElement(By.XPath("//strong[text()='Services']")).Click();
-        IWebElement element= driver.FindElement(By.XPath("//a[contains(@href, '/services/marketing-tools/')]"));
-       Console.WriteLine(element.Text); 
-       //   element= driver.FindElement(By.XPath("//a[contains(@href, '/services/marketing-tools/')]"));
-      // Console.WriteLine(element.Text);
-      //driver.Url="https://uzmarketing.com/";
-        driver.FindElement(By.ClassName("fa-lightbulb-o")).Click();
+        IWebElement element= driver.FindElement(By.XPath("//a[contains(@href, '/services/marketing-tools/')]"));// looking for hyperlink 
+       Console.WriteLine(element.Text); // show expeted result
+       //step 3
+       driver.FindElement(By.ClassName("fa-lightbulb-o")).Click();// find object by class name
         element= driver.FindElement(By.XPath("//h4[text()='Graphic Design']"));
-        Console.WriteLine(element.Text); 
+        Console.WriteLine(element.Text); // show expeted result
+        // step 4
         driver.FindElement(By.XPath("//strong[text()='Contact']")).Click();
         element= driver.FindElement(By.XPath("//span[contains(text(), 'Fax')]"));
-        Console.WriteLine(element.Text);
+        Console.WriteLine(element.Text);// show expected result
+        driver.Quit();
 
     }
 }
