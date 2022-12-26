@@ -1,9 +1,9 @@
-﻿using OpenQA.Selenium.Firefox;
+﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 class Program{
     static void Main(string[] arg){
        //step 1
-       IWebDriver driver= new FirefoxDriver(new FirefoxOptions());//opening FireFox browser
+       IWebDriver driver= new ChromeDriver();//opening Chrome browser
        driver.Url="https://uzmarketing.com/";// move to website by link
        //step 2
        driver.FindElement(By.XPath("//strong[text()='Services']")).Click();// looking for strong which text equal to "Services" and click it
