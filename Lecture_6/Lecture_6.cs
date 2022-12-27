@@ -1,7 +1,10 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿
+using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 class Program{
-    static void Main(string[] arg){
+    [Test]
+    public void Test(){
        //step 1
        IWebDriver driver= new ChromeDriver();//opening Chrome browser
        driver.Url="https://uzmarketing.com/";// move to website by link
