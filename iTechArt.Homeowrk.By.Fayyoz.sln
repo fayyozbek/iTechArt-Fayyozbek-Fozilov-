@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture_6", "Lecture_6\Lecture_6.csproj", "{4056FFB9-D0DF-4B2F-8B95-CA66075569C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntroductionToAutomatedTesting", "IntroductionToAutomatedTesting\IntroductionToAutomatedTesting.csproj", "{4056FFB9-D0DF-4B2F-8B95-CA66075569C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
