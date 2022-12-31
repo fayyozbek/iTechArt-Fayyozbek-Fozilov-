@@ -1,25 +1,23 @@
-using OpenQA.Selenium;
-
 namespace UnitTesting.Tests;
 
 public class TestCheckUI : BaseTest
 {
    // [Parallelizable(scope: ParallelScope.Default)]
-    // [Test]
-    //
-    // public void EnterIntegerNumbers( string number)
-    // {
-    //     var baseUrlLikeUri = new Uri(BaseUrl, UriKind.Absolute);
-    //         
-    //     WebDriver.Navigate().GoToUrl(baseUrlLikeUri);
-    //     WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-    //
-    //     var numberButton = WebDriver.FindElement(By.XPath($"//input[@type='button'][contains(@value, '{number}')]"));
-    //     numberButton.Click();
-    //     
-    //     var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
-    //     Assert.That(enterValue.GetAttribute("value"), Is.EqualTo(number));
-    // }
+    [Test]
+    [Ignore("Enter integer number")]
+    public void EnterIntegerNumbers( )
+    {
+        var baseUrlLikeUri = new Uri(BaseUrl, UriKind.Absolute);
+            
+        WebDriver.Navigate().GoToUrl(baseUrlLikeUri);
+        WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+    
+        var numberButton = WebDriver.FindElement(By.XPath($"//input[@type='button'][contains(@value, '123456789')]"));
+        numberButton.Click();
+        
+        var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
+        Assert.That(enterValue.GetAttribute("value"), Is.EqualTo("123456789"));
+    }
     
     [Test]
     [TestCase("1")]
@@ -86,11 +84,5 @@ public class TestCheckUI : BaseTest
         
         var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
         Assert.That(enterValue.GetAttribute("value"), Is.EqualTo("0"));
-    }
-    
-    [TearDown]
-    public void TearDown()
-    {
-        WebDriver.Quit();
     }
 }

@@ -1,5 +1,3 @@
-using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using UnitTesting.Utils;
 
@@ -26,12 +24,14 @@ public class BaseTest
 
     protected void EnterFunction(string strNumber)
     {
-        IWebElement button;
         var numberList = strNumber.ToCharArray();
         foreach (var number in numberList)
-        {
-            button = WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='{number}']"));
-            button.Click();
-        }
+            WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='{number}']")).Click();
+    }
+
+    [TearDown]
+    public void TearDown()
+    {
+        WebDriver.Quit();
     }
 }
