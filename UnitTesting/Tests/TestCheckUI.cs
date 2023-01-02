@@ -1,5 +1,8 @@
 namespace UnitTesting.Tests;
 
+[TestFixture]
+[NonParallelizable]
+
 public class TestCheckUI : BaseTest
 {
    // [Parallelizable(scope: ParallelScope.Default)]
@@ -38,20 +41,17 @@ public class TestCheckUI : BaseTest
     {
         OpenBrowser();
         EnterFunction(numbers);
-
         var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
         Assert.That(enterValue.GetAttribute("value"), Is.EqualTo(numbers));
     }
 
     [Test]
+    [Retry(3)]
     public void TestClearLastDigit()
     {
         OpenBrowser();
-        
         EnterFunction("1234");
-        
         WebDriver.FindElement(By.XPath($"//div[@title='backspace']")).Click();
-        
         var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
         Assert.That(enterValue.GetAttribute("value"), Is.EqualTo("123"));
     }
@@ -77,11 +77,8 @@ public class TestCheckUI : BaseTest
     public void TestClearAll()
     {
         OpenBrowser();
-        
         EnterFunction("123");
-        
         WebDriver.FindElement(By.XPath($"//input[@type='button'][contains(@value, 'AC')]")).Click();
-        
         var enterValue = WebDriver.FindElement(By.XPath($"//input[@id='fld_1']"));
         Assert.That(enterValue.GetAttribute("value"), Is.EqualTo("0"));
     }

@@ -1,5 +1,7 @@
 namespace UnitTesting.Tests;
-[Parallelizable(ParallelScope.Self)]
+
+[TestFixture]
+[FixtureLifeCycle(LifeCycle.SingleInstance)]
 public class TestFunctions : BaseTest
 {
     private static object[] _operators =

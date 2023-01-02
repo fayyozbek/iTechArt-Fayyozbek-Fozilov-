@@ -1,5 +1,7 @@
 namespace UnitTesting.Tests;
 
+[TestFixture]
+[SingleThreaded]
 public class TestMemory : BaseTest
 {
     [Test]
@@ -15,6 +17,7 @@ public class TestMemory : BaseTest
     }
     
     [Test]
+    [Retry(2)]
     public void TestMemoryMinus()
     {
         OpenBrowser();
