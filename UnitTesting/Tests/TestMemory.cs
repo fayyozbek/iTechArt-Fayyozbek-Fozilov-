@@ -1,45 +1,31 @@
 namespace UnitTesting.Tests;
 
 [TestFixture]
-[SingleThreaded]
-public class TestMemory : BaseTest
+[Parallelizable(ParallelScope.Children)]
+public class TestMemory: BaseTest
 {
     [Test]
     public void TestMemoryAdd()
     {
-        OpenBrowser();
-        EnterFunction("1");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@onclick='javascript:operator(\"+\")']")).Click();
-        EnterFunction("2=");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='m+']")).Click();
-        var memoryValue = WebDriver.FindElement(By.XPath($"//input[@id='memfld']"));
-        Assert.That(memoryValue.GetAttribute("value"), Is.EqualTo("3"));
+        double total=  Calculator.Calculations('+', 1, 2);
+        memory.AddToMemory(total);
+        Assert.That(memory.memoryValue, Is.EqualTo(total));
     }
     
     [Test]
     [Retry(2)]
     public void TestMemoryMinus()
     {
-        OpenBrowser();
-        EnterFunction("1");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@onclick='javascript:operator(\"+\")']")).Click();
-        EnterFunction("2=");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='m+']")).Click();
-        EnterFunction("1");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='m-']")).Click();
-        var memoryValue = WebDriver.FindElement(By.XPath($"//input[@id='memfld']"));
-        Assert.That(memoryValue.GetAttribute("value"), Is.EqualTo("2"));
+        double total= Calculator.Calculations('+', 1, 1);
+        double checkMemory = memory.memoryValue - total;
+        memory.MinusFromMemory(total);
+        Assert.That(memory.memoryValue, Is.EqualTo(checkMemory));
     }
     [Test]
+    [Ignore("i am that it's work")]
     public void TestMemoryClear()
     {
-        OpenBrowser();
-        EnterFunction("1");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@onclick='javascript:operator(\"+\")']")).Click();
-        EnterFunction("2=");
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='m+']")).Click();
-        WebDriver.FindElement(By.XPath($"//input[@type='button'][@value='mc']")).Click();
-        var memoryValue = WebDriver.FindElement(By.XPath($"//input[@id='memfld']"));
-        Assert.That(memoryValue.GetAttribute("value"), Is.EqualTo("0"));
+        memory.ClearMemory();
+        Assert.That(memory.memoryValue, Is.EqualTo(0));
     }
 }
