@@ -1,5 +1,3 @@
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
-
 namespace UnitTesting.Tests;
 
 [TestFixture]
@@ -7,7 +5,6 @@ namespace UnitTesting.Tests;
 [NonParallelizable]
 public class TestFunctions : BaseTest
 {
-    
     private static object[] _operators =
     {
         new object[] { '+', 1, 2, 3},
@@ -24,7 +21,6 @@ public class TestFunctions : BaseTest
     {
         double total= Calculator.Calculations(charOperator , firstVariable, secondVariable);
         Assert.That(total, Is.EqualTo(expectedResult));
-
     }
 
     [Test]
@@ -34,5 +30,4 @@ public class TestFunctions : BaseTest
         double total = Calculator.Percentage(10, 10);
         Assert.That(total, Is.EqualTo(1));
     }
-    
 }

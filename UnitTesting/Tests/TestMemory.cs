@@ -21,6 +21,7 @@ public class TestMemory: BaseTest
         memory.MinusFromMemory(total);
         Assert.That(memory.memoryValue, Is.EqualTo(checkMemory));
     }
+    
     [Test]
     [Ignore("i am that it's work")]
     public void TestMemoryClear()

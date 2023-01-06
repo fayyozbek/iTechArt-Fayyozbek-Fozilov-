@@ -35,5 +35,4 @@ public class TestFunctionsWithMemory : BaseTest
     {
         memory.ClearMemory();
     }
-    
 }

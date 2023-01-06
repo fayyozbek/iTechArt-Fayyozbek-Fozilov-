@@ -1,6 +1,3 @@
-
-using UnitTesting.Utils;
-
 namespace UnitTesting.Tests;
 
 [TestFixture]
