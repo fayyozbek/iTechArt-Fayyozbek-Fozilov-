@@ -2,7 +2,7 @@ using System.Diagnostics;
 
 namespace StudyingApproachesToBuildingTests;
 
-public class TestCalculatorTDD
+public class TestCalculatorTdd
 {
     [Test]
     public void TestSum()
