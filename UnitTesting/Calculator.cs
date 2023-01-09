@@ -2,10 +2,6 @@ namespace UnitTesting;
 
 public class Calculator
 {
-    
-
-   
-
     public static double Calculations(char charOperator , double a ,double b)
     {
         double total = 0;
@@ -24,7 +20,6 @@ public class Calculator
                 total = a * b;
                 break;
         }
-
         return total;
     }
 
@@ -33,5 +28,4 @@ public class Calculator
         double total = a * (b / 100);
         return total;
     }
-    
 }

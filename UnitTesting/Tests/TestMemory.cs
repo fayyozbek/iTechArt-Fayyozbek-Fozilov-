@@ -9,7 +9,7 @@ public class TestMemory: BaseTest
     {
         double total=  Calculator.Calculations('+', 1, 2);
         memory.AddToMemory(total);
-        Assert.That(memory.memoryValue, Is.EqualTo(total));
+        Assert.That(memory.MemoryValue, Is.EqualTo(total));
     }
     
     [Test]
@@ -17,9 +17,9 @@ public class TestMemory: BaseTest
     public void TestMemoryMinus()
     {
         double total= Calculator.Calculations('+', 1, 1);
-        double checkMemory = memory.memoryValue - total;
+        double checkMemory = memory.MemoryValue - total;
         memory.MinusFromMemory(total);
-        Assert.That(memory.memoryValue, Is.EqualTo(checkMemory));
+        Assert.That(memory.MemoryValue, Is.EqualTo(checkMemory));
     }
     
     [Test]
@@ -27,6 +27,6 @@ public class TestMemory: BaseTest
     public void TestMemoryClear()
     {
         memory.ClearMemory();
-        Assert.That(memory.memoryValue, Is.EqualTo(0));
+        Assert.That(memory.MemoryValue, Is.EqualTo(0));
     }
 }
