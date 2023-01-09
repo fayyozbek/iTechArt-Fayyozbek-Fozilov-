@@ -9,7 +9,6 @@ public class Memory
         this.MemoryValue = 0;
     }
 
-
     public void AddToMemory(double value)
     {
         this.MemoryValue += value;
