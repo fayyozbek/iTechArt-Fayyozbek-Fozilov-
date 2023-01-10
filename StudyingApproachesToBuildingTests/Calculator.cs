@@ -2,23 +2,23 @@ namespace StudyingApproachesToBuildingTests;
 
 public static class Calculator
 {
-    public static double Sum(double i, double i1)
+    public static double Sum(double a, double b)
     {
-        throw new NotImplementedException();
+        return a + b;
     }
 
-    public static double Subtraction(double i, double i1)
+    public static double Subtraction(double a, double b)
     {
-        throw new NotImplementedException();
+        return a - b;
     }
 
-    public static double Multiplication(double i, double i1)
+    public static double Multiplication(double a, double b)
     {
-        throw new NotImplementedException();
+        return a * b;
     }
 
-    public static double Division(int i, int i1)
+    public static double Division(int a, int b)
     {
-        throw new NotImplementedException();
+        return a / b;
     }
 }

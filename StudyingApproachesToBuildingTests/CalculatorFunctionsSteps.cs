@@ -5,51 +5,48 @@ namespace StudyingApproachesToBuildingTests;
 [Binding]
 public class CalculatorFunctionsSteps
 {
-    [Given(@"I start calculator")]
-    public void GivenIStartCalculator()
-    {
-        ScenarioContext.StepIsPending();
-    }
-
+    private int _firstNumber;
+    private int _secondNumber;
+    private int _total;
     [Given(@"I have the first number (.*)")]
     public void GivenIHaveTheFirstNumber(int p0)
     {
-        ScenarioContext.StepIsPending();
+        _firstNumber = p0;
     }
 
     [Given(@"I have the second number (.*)")]
     public void GivenIHaveTheSecondNumber(int p0)
     {
-        ScenarioContext.StepIsPending();
+        _secondNumber = p0;
     }
     
     [When(@"I want to multiply this numbers")]
     public void WhenIWantToMultiplyThisNumbers()
     {
-        ScenarioContext.StepIsPending();
+        _total = (int)Calculator.Multiplication(_firstNumber,_secondNumber);
     }
     
     [Then(@"the result should be (.*)")]
     public void ThenTheResultShouldBe(int p0)
     {
-        ScenarioContext.StepIsPending();
+        Assert.That(_total, Is.EqualTo(p0) );
     }
 
     [When(@"I want to sum this numbers")]
     public void WhenIWantToSumThisNumbers()
     {
-        ScenarioContext.StepIsPending();
+        _total = (int)Calculator.Sum(_firstNumber,_secondNumber);
     }
 
     [When(@"I want to subtraction this numbers")]
     public void WhenIWantToSubtractionThisNumbers()
     {
-        ScenarioContext.StepIsPending();
+        _total = (int)Calculator.Subtraction(_firstNumber,_secondNumber);
     }
 
     [When(@"I want to divide this numbers")]
     public void WhenIWantToDivideThisNumbers()
     {
-        ScenarioContext.StepIsPending();
+        _total = (int)Calculator.Division(_firstNumber,_secondNumber);
     }
 }
