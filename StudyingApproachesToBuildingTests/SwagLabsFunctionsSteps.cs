@@ -13,7 +13,6 @@ public class  SwagLabsFunctionsSteps
         _webDriver = new ChromeDriver();
         _webDriver.Navigate().GoToUrl("https://www.saucedemo.com/");
         _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        
     }
 
     [Given(@"I fill in form username as standard_user")]
@@ -44,6 +43,7 @@ public class  SwagLabsFunctionsSteps
     public void ThenISeeLabelProducts()
     {
         Assert.That(_element.Text, Is.EqualTo("PRODUCTS"));
+        _webDriver.Quit();
     }
 
     [Given(@"I click on button add to cart")]
@@ -63,6 +63,7 @@ public class  SwagLabsFunctionsSteps
     {
         _element= _webDriver.FindElement(By.ClassName("cart_quantity"));
         Assert.That(_element.Text, Is.EqualTo("1"));
+        _webDriver.Quit();
     }
 
     [When(@"I click on button remove")]
@@ -82,11 +83,6 @@ public class  SwagLabsFunctionsSteps
         {
             Assert.Pass();
         }
-    }
-
-    [TearDown]
-    public void Teardown()
-    {
         _webDriver.Quit();
     }
 }

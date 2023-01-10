@@ -3,6 +3,7 @@ using TechTalk.SpecFlow;
 namespace StudyingApproachesToBuildingTests;
 
 [Binding]
+[Category("Calculator")]
 public class CalculatorFunctionsSteps
 {
     private int _firstNumber;

@@ -1,20 +1,31 @@
 namespace StudyingApproachesToBuildingTests;
+[TestFixture]
 public class TestSwagLabsTdd: BaseTest
 {
-   
     [Test]
+    [Order(1)]
+    [Retry(2)]
     public void TestLogin()
-    {   
-        //Green
+    {
         OpenBrowser();
         Login("standard_user", "secret_sauce");
         var element = FindElementWithText("Products");
-        Assert.That(element.GetAttribute("value"), Is.EqualTo("Products"));
+        Assert.That(element.Text, Is.EqualTo("PRODUCTS"));
+    }
+    
+    [Test]
+    [Ignore("not finished yet ")] 
+    public void TestLogOut()
+    {   
+        OpenBrowser();
+        Login("standard_user", "secret_sauce");
+        var element = FindElementWithText("Products");
+        Assert.That(element.Text, Is.EqualTo("PRODUCTS"));
     }
     [Test]
+    [Order(2)]
     public void TestAddItem()
     {
-        //Green
         OpenBrowser();
         Login("standard_user", "secret_sauce");
         var element = FindButton("Add");
@@ -22,13 +33,13 @@ public class TestSwagLabsTdd: BaseTest
         element = FindByClass("shopping_cart_link");
         element.Click();
         element = FindByClass("cart_quantity");
-        Assert.That(element.GetAttribute("value"), Is.EqualTo("1"));
+        Assert.That(element.Text, Is.EqualTo("1"));
     }
 
     [Test]
+    [Order(3)]
     public void TestAddAndRemoveItem()
     {
-        //Green
         OpenBrowser();
         Login("standard_user", "secret_sauce");
         var element = FindButton("Add");
@@ -36,7 +47,7 @@ public class TestSwagLabsTdd: BaseTest
         element = FindByClass("shopping_cart_link");
         element.Click();
         element = FindByClass("cart_quantity");
-        Assert.That(element.GetAttribute("value"), Is.EqualTo("1"));
+        Assert.That(element.Text, Is.EqualTo("1"));
         BackToPreviousPage();
         element = FindButton("Remove");
         element.Click();

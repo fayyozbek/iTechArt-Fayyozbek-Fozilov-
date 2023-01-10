@@ -1,4 +1,5 @@
 namespace StudyingApproachesToBuildingTests;
+[SetUpFixture]
 public abstract class BaseTest
 {
     private IWebDriver _webDriver { get; set; }
@@ -19,7 +20,6 @@ public abstract class BaseTest
         _webDriver.FindElement(By.Id("user-name")).SendKeys(user);
         _webDriver.FindElement(By.Id("password")).SendKeys(password);
         _webDriver.FindElement(By.Id("login-button")).Click();
-
     }
 
     public IWebElement FindElementWithText(string products)
@@ -30,7 +30,6 @@ public abstract class BaseTest
     public  IWebElement FindButton(string add)
     {
         return _webDriver.FindElement(By.XPath($"//button[contains(text(),'{add}')]"));
-
     }
 
     public  IWebElement FindByClass(string shoppingCartLink)
