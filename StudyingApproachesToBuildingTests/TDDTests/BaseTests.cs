@@ -2,7 +2,7 @@ namespace StudyingApproachesToBuildingTests;
 [SetUpFixture]
 public abstract class BaseTest
 {
-    private IWebDriver _webDriver { get; set; }
+    protected IWebDriver _webDriver { get; set; }
 
     [SetUp]
     public void Setup()
