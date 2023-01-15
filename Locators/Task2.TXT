@@ -1,0 +1,8 @@
+﻿1. By.XPath("//*[@data-goal=\"hotelTab\"]//*[@data-test-id=\"text\"]")
+2. By.XPath("//*[@class=\"q8JaLokdctjkb1_n4aw0\"]")
+3. By.XPath("//*[@data-test-id=\"logo\"]")
+4. By.XPath("//*[@data-test-id=\"swap-places\"]")
+5. By.XPath("//*[@class=\"lhBndfFd5uUAYinMmNLG\"]")
+6. By.XPath("//*[contains(@class,\"spQ8hZwUaiJ8r1UOxrWo\")]")
+7. By.XPath("//*[contains(@class,\"today\")]")
+8. By.XPath("//*[contains(@aria-label,\"Jan 17\")]")
