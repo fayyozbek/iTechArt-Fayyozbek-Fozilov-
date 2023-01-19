@@ -19,7 +19,6 @@ public class WebDriverFactory
         switch (browser)
         {
             case Browser.Chrome:
-                //new DriverManager().SetUpDriver(new ChromeConfig());
                 var options = new ChromeOptions();
                 options.AddArguments(ChromeArguments());
                 driver = new ChromeDriver(options);
@@ -39,7 +38,7 @@ public class WebDriverFactory
         yield return "no-sandbox";
         yield return "--disable-dev-shm-usage";
         yield return "--disable-gpu";
-     //   yield return "headless";
+        yield return "headless";
         yield return "window-size=1920,1080";
         yield return "--disable-extensions";
     }
