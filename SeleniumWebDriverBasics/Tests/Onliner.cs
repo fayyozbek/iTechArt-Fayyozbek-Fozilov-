@@ -58,9 +58,6 @@ public class Onliner
         Assert.That(element.Text, Does.Contain("2"));
 
         // 6th step
-        var elements =
-            _webDriver.FindElements(
-                By.XPath("//*[contains(@data-bind, \"product.full_name\") and contains(text(), \"Apple\")]"));
         _webDriver.FindElement(By.XPath("//a[contains(@class, \"compare-button__sub_main\")]")).Click();
         Assert.That(_webDriver.Title, Does.Contain("Сравнить"));
         
