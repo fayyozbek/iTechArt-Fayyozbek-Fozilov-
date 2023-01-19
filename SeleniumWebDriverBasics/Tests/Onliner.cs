@@ -8,6 +8,7 @@ namespace SeleniumWebDriverBasics;
 public class Onliner
 {
     private IWebDriver _webDriver;
+    
     [SetUp]
     public void Setup()
     {
