@@ -3,8 +3,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using SeleniumWebDriverBasics.Utilities;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
 
 namespace SeleniumWebDriverBasics.DriverConfiguration;
 
@@ -19,9 +17,7 @@ public class WebDriverFactory
         switch (browser)
         {
             case Browser.Chrome:
-                var options = new ChromeOptions();
-                options.AddArguments(ChromeArguments());
-                driver = new ChromeDriver(options);
+               driver = new ChromeDriver(Configurator.Settings);
                 return driver;
             case Browser.Edge:
                 driver = new EdgeDriver();
@@ -31,17 +27,6 @@ public class WebDriverFactory
                 return driver;
             default: throw new ArgumentException($"Browser '{browser}' is not supported yet");
         }
-    }
-
-    private IEnumerable<string> ChromeArguments()
-    {
-        yield return "no-sandbox";
-        yield return "--disable-dev-shm-usage";
-        yield return "--disable-gpu";
-        yield return "headless";
-        yield return "start-maximized";
-        yield return "window-size=1920,1080";
-        yield return "--disable-extensions";
     }
 }
 

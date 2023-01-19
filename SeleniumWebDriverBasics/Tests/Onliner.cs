@@ -2,6 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumWebDriverBasics.DriverConfiguration;
 using SeleniumWebDriverBasics.Utilities;
+using SeleniumExtras.WaitHelpers;
 namespace SeleniumWebDriverBasics;
 
 public class Onliner
@@ -14,7 +15,6 @@ public class Onliner
     }
 
     [Test]
-    [Retry(2)]
     public void Test()
     {
         // 1st step
@@ -35,7 +35,6 @@ public class Onliner
 
         // 4th step
         element = _webDriver.FindElement(By.XPath("//*[contains(@data-bind, \"removeTag\")]//span[contains(text(), \"HONOR\")]"));
-        ScrollToView(element);
         element.Click();
         _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         try
@@ -49,14 +48,12 @@ public class Onliner
 
         // 5th step
         WebDriverWait wait = new(_webDriver, TimeSpan.FromSeconds(5));
-        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(
-            By.XPath(
-                "/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[2]/div/div[1]/div[1]")));
-        _webDriver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[2]/div/div[1]/div[1]")).Click();
-        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(
-            By.XPath(
-                "/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[5]/div/div[1]/div[1]")));
-        _webDriver.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[5]/div/div[1]/div[1]")).Click();
+        const string firstProduct ="/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[2]/div/div[1]/div[1]";
+        const string secondProduct = "/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[5]/div/div[1]/div[1]";
+        wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(firstProduct)));
+        _webDriver.FindElement(By.XPath(firstProduct)).Click();
+        wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath(secondProduct)));
+        _webDriver.FindElement(By.XPath(secondProduct)).Click();
         element = _webDriver.FindElement(By.XPath("//a[contains(@class, \"compare-button__sub_main\")]//span"));
         Assert.That(element.Text, Does.Contain("2"));
 
