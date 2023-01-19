@@ -39,6 +39,7 @@ public class WebDriverFactory
         yield return "--disable-dev-shm-usage";
         yield return "--disable-gpu";
         yield return "headless";
+        yield return "start-maximized";
         yield return "window-size=1920,1080";
         yield return "--disable-extensions";
     }
