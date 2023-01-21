@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using SeleniumWebDriverBasics.Utilities;
+using SeleniumWebDriverBasics.Configurations;
 
 namespace SeleniumWebDriverBasics.DriverConfiguration;
 
@@ -12,12 +12,12 @@ public class WebDriverFactory
     {
         IWebDriver driver;
 
-        var browser = Configurator.Browser;
+        var browser = AppConfigurator.Browser;
 
         switch (browser)
         {
             case Browser.Chrome:
-               driver = new ChromeDriver(Configurator.Settings);
+               driver = new ChromeDriver(AppConfigurator.Settings);
                 return driver;
             case Browser.Edge:
                 driver = new EdgeDriver();
