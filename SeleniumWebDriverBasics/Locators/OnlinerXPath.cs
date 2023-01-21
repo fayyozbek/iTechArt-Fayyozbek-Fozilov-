@@ -1,4 +1,3 @@
-using System.Runtime.Serialization;
 using OpenQA.Selenium;
 
 namespace SeleniumWebDriverBasics.Locators;
@@ -9,7 +8,7 @@ public class OnlinerXPath
     
     public static readonly By XPathForFirstProduct =By.XPath("/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[2]/div/div[1]/div[1]");
     
-    public static readonly By XPathForSecondProduct = By.XPath("/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[5]/div/div[1]/div[1]");
+    public static readonly By XPathForThirdProduct = By.XPath("/html/body/div[1]/div/div/div/div/div/div[2]/div[1]/div[4]/div[3]/div[4]/div[5]/div/div[1]/div[1]");
    
     public static By XPathQueryGenerator(string attribute, string searchWhat)
     {
@@ -25,5 +24,4 @@ public class OnlinerXPath
     {
         return By.XPath($"//*[contains(@class, \"{searchWhat}\")]");
     }
-    
 }
