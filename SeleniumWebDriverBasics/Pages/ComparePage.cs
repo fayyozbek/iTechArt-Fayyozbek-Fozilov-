@@ -12,18 +12,18 @@ public class ComparePage : BasePage
     protected override By UniqueWebLocator => OnlinerXPath.XPathQueryGenerator( "__clear button");
     protected override string UrlPath { get; }
     
-    private const string _expectedText = "Краткая информация об отличиях товара от конкурентных моделей и аналогов, сведения о позиционировании на рынке, преемственности и др.";
+    private const string ExpectedText = "Краткая информация об отличиях товара от конкурентных моделей и аналогов, сведения о позиционировании на рынке, преемственности и др.";
     
     private readonly By _descriptionButtonLocator = OnlinerXPath.XPathQueryGenerator("data-tip-term", "Описание");
 
-    private IWebElement _descriptionButton => WebDriver.FindElement(_descriptionButtonLocator);
+    private IWebElement DescriptionButton => WebDriver.FindElement(_descriptionButtonLocator);
 
-    public bool IsDecriptionOpened => _descriptionButton.GetAttribute("class").Contains("trigger_visible");
+    public bool IsDecriptionOpened => DescriptionButton.GetAttribute("class").Contains("trigger_visible");
 
-    public bool IsDescriptionRightText => _descriptionButton.GetAttribute("data-tip-text").Contains(_expectedText);
+    public bool IsDescriptionRightText => DescriptionButton.GetAttribute("data-tip-text").Contains(ExpectedText);
 
     public void ClickOnDescriptionButton()
     {
-        _descriptionButton.Click();
+        DescriptionButton.Click();
     }
 }

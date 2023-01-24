@@ -15,10 +15,10 @@ public class HomePage : BasePage
 
     private readonly By _mobilePhoneLinkLocator = OnlinerXPath.XPathQueryGenerator("href", "mobile");
 
-    private IWebElement _mobilePhoneLink => WebDriver.FindElement(_mobilePhoneLinkLocator);
+    private IWebElement MobilePhoneLink => WebDriver.FindElement(_mobilePhoneLinkLocator);
     
     public void ClickMobilePhoneLink()
     {
-        _mobilePhoneLink.Click();
+        MobilePhoneLink.Click();
     }
 }

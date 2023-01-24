@@ -15,15 +15,15 @@ public class MobilePage : BasePage
     
     protected override string UrlPath => string.Empty;
 
-    private WebDriverWait _wait => new(WebDriver, TimeSpan.FromSeconds(5));
+    private WebDriverWait Wait => new(WebDriver, TimeSpan.FromSeconds(5));
     
     private readonly By _appleCheckBoxLocator = OnlinerXPath.XPathQueryGenerator("value", "apple", "parent::*");
 
-    private IWebElement _appleCheckBox => WebDriver.FindElement(_appleCheckBoxLocator);
+    private IWebElement AppleCheckBox => WebDriver.FindElement(_appleCheckBoxLocator);
     
     private readonly By _honorCheckBoxLocator = OnlinerXPath.XPathQueryGenerator("value", "honor", "parent::*");
 
-    private IWebElement _honorleCheckBox => WebDriver.FindElement(_honorCheckBoxLocator);
+    private IWebElement HonorleCheckBox => WebDriver.FindElement(_honorCheckBoxLocator);
 
     private readonly By _honorLabelLocator =
         OnlinerXPath.XPathQueryGenerator("data-bind", "removeTag", "span[contains(text(), \"HONOR\")]");
@@ -32,34 +32,34 @@ public class MobilePage : BasePage
 
     private readonly By _appleFirstElementInTheListLocator = OnlinerXPath.XPathForFirstProduct;
 
-    private IWebElement _appleFirstElementInTheList => WebDriver.FindElement(_appleFirstElementInTheListLocator);
+    private IWebElement AppleFirstElementInTheList => WebDriver.FindElement(_appleFirstElementInTheListLocator);
 
     private readonly By _appleThirdElementInTheListLocator = OnlinerXPath.XPathForThirdProduct;
 
-    private IWebElement _appleThirdElementInTheList => WebDriver.FindElement(_appleThirdElementInTheListLocator);
+    private IWebElement AppleThirdElementInTheList => WebDriver.FindElement(_appleThirdElementInTheListLocator);
     
     private readonly By _compareButtonLocator = OnlinerXPath.XPathQueryGenerator("compare-button__sub_main");
     
     private readonly By _compareButtonSpanLocator = OnlinerXPath.XPathQueryGenerator("class","compare-button__sub_main", "span");
 
-    private IWebElement _compareButtonSpan => WebDriver.FindElement(_compareButtonSpanLocator);
+    private IWebElement CompareButtonSpan => WebDriver.FindElement(_compareButtonSpanLocator);
 
-    private IWebElement _compareButton => WebDriver.FindElement(_compareButtonLocator);
+    private IWebElement CompareButton => WebDriver.FindElement(_compareButtonLocator);
     
-    public bool IsItemsAdded => _compareButtonSpan.Text.Contains("2");
+    public bool IsItemsAdded => CompareButtonSpan.Text.Contains("2");
 
-    private IWebElement _honorLabel => WebDriver.FindElement(_honorLabelLocator);
+    private IWebElement HonorLabel => WebDriver.FindElement(_honorLabelLocator);
 
     public void ClickOnCheckBoxes()
     {
-        ScrollToView(_appleCheckBox);
-        _appleCheckBox.Click();
-        _honorleCheckBox.Click();
+        ScrollToView(AppleCheckBox);
+        AppleCheckBox.Click();
+        HonorleCheckBox.Click();
     }
 
     public void ClickHonorRemoveTag()
     {
-        _honorLabel.Click();
+        HonorLabel.Click();
     }
 
     public bool IsAviableHonorTitles
@@ -68,7 +68,7 @@ public class MobilePage : BasePage
         {
             try
             {
-                _wait.Until(ExpectedConditions.InvisibilityOfElementLocated(_honorTitleLocator));
+                Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(_honorTitleLocator));
                 return !WebDriver.FindElement(_honorTitleLocator).Displayed;
             }
             catch (NoSuchElementException)
@@ -80,15 +80,15 @@ public class MobilePage : BasePage
 
     public void ClickFirstAndThirdProduct()
     {
-        _wait.Until(ExpectedConditions.ElementToBeClickable(_appleFirstElementInTheListLocator));
-        _appleFirstElementInTheList.Click();
-        _wait.Until(ExpectedConditions.ElementToBeClickable(_appleThirdElementInTheListLocator));
-        _appleThirdElementInTheList.Click();
+        Wait.Until(ExpectedConditions.ElementToBeClickable(_appleFirstElementInTheListLocator));
+        AppleFirstElementInTheList.Click();
+        Wait.Until(ExpectedConditions.ElementToBeClickable(_appleThirdElementInTheListLocator));
+        AppleThirdElementInTheList.Click();
     }
 
     public void ClickOnCompareButton()
     {
-        _compareButton.Click();
+        CompareButton.Click();
     }
     
     public void ScrollToView(IWebElement element)
