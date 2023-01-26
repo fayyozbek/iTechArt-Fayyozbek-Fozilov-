@@ -1,5 +1,3 @@
-using OpenQA.Selenium;
-
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class FramesPage : BasePage
@@ -15,6 +13,7 @@ public class FramesPage : BasePage
     new public  bool IsPageOpened => WebDriver.FindElement(UniqueWebLocator).Text.Equals("Frames");
     
     private readonly By _frameText = DemoqaXPath.XPathQueryGenerator("id", "sampleHeading");
+    
     public bool IsUpperAndLowerFramesEqual
     {
         get
@@ -27,5 +26,4 @@ public class FramesPage : BasePage
             return lowerFrameText.Equals(upperFrameText);
         }
     }
-
 }

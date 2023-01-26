@@ -1,6 +1,3 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V109.Page;
-
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class NestedFramesPage : BasePage

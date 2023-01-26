@@ -1,5 +1,3 @@
-using OpenQA.Selenium;
-
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class AlertPage : BasePage
@@ -8,18 +6,10 @@ public class AlertPage : BasePage
     {
     }
 
-    private const string _chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-    private string _randomText
-    {
-        get
-        {
-            Random random = new Random();
-            int length = 0;
-            return new string(Enumerable.Repeat(_chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-    }
+    private readonly string _randomText = GenerateRandomText();
+    
     protected override By UniqueWebLocator => DemoqaXPath.XPathQueryGenerator("main-header");
     
     protected override string UrlPath => string.Empty;
@@ -46,11 +36,23 @@ public class AlertPage : BasePage
     
     private IWebElement PromptResult => WebDriver.FindElement(_promptResultLocator);
 
-    public bool IsAlertOpened => WebDriver.SwitchTo().Alert().Text.Contains("You clicked a button");
+    public bool IsAlertOpened
+    {
+        get
+        {
+            WebDriverWait.Until(webDriver => webDriver.SwitchTo().Alert());
+            return  WebDriver.SwitchTo().Alert().Text.Contains("You clicked a button");
+        }
+    }
+
+    public bool IsConfirmAlertOpened =>{
+        get
+        {
+            return WebDriver.SwitchTo().Alert().Text.Contains("Do you confirm action?");
+        }
+    }
     
-    public bool IsConfirmAlertOpened => WebDriver.SwitchTo().Alert().Text.Contains("Do you confirm action?");
-    
-    public bool IsPromtAlertOpened => WebDriver.SwitchTo().Alert().Text.Contains("Please enter your name");
+    public bool IsPromptAlertOpened => WebDriver.SwitchTo().Alert().Text.Contains("Please enter your name");
 
     public bool IsAlertClosed
     {
@@ -68,9 +70,16 @@ public class AlertPage : BasePage
         }
     }
 
+    private static string GenerateRandomText()
+    {
+        var random = new Random();
+        var length = 5;
+        return new string(Enumerable.Repeat(Chars, length)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+    }
     public bool IsAfterConfirmAlertClosedTextAvailable => ConfirmResult.Text.Contains("Ok");
     
-    public bool IsAfterPromptAlertClosedTextAvailable => ConfirmResult.Text.Contains(_randomText);
+    public bool IsAfterPromptAlertClosedTextAvailable => PromptResult.Text.Contains(_randomText);
 
     public void ClickAlertBtn()
     {

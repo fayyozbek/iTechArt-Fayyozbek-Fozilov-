@@ -1,4 +1,3 @@
-using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumWebDriver.Advanced.Part1.Configurations;
 
@@ -10,17 +9,12 @@ public abstract class BasePage
     
     protected WebDriverWait WebDriverWait { get; }
 
-    protected DefaultWait<IWebDriver> FluentWait { get; }
-
     protected IJavaScriptExecutor JavaScriptExecutor { get; }
     
-    
-
     protected BasePage(IWebDriver webDriver)
     {
         WebDriver = webDriver;
         WebDriverWait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(AppConfigurator.ConditionTimeout));
-        FluentWait = new DefaultWait<IWebDriver>(WebDriver);
         JavaScriptExecutor = (IJavaScriptExecutor)WebDriver;
     }
     
@@ -52,7 +46,6 @@ public abstract class BasePage
             {
                 isOpened = false;
             }
-
             return isOpened;
         }
     }

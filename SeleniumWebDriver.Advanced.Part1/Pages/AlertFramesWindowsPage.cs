@@ -1,16 +1,16 @@
-using OpenQA.Selenium;
 using SeleniumWebDriver.Advanced.Part1.Pages;
 
 
 namespace SeleniumWebDriver.Advanced.Part1;
 
-public class AlertFramesWindowesPage : BasePage
+public class AlertFramesWindowsPage : BasePage
 {
-    public AlertFramesWindowesPage(IWebDriver webDriver) : base(webDriver)
+    public AlertFramesWindowsPage(IWebDriver webDriver) : base(webDriver)
     {
     }
 
     protected override By UniqueWebLocator { get; }
+    
     protected override string UrlPath { get; }
     
     private readonly By _alertsBtnLocator = DemoqaXPath.XPathQueryGenerator("id", "item-1", "span[text()=\"Alerts\"]");
