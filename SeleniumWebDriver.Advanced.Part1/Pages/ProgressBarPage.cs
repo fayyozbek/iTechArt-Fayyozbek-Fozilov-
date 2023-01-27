@@ -1,6 +1,3 @@
-using OpenQA.Selenium.DevTools.V108.IO;
-using SeleniumExtras.WaitHelpers;
-
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class ProgressBarPage : BasePage

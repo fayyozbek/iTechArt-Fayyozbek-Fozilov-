@@ -50,11 +50,6 @@ public abstract class BasePage
         }
     }
 
-    public void BackPage()
-    {
-        WebDriver.Navigate().Back();
-    }
-    
     private void WaitForPageLoad()
     {
         try
@@ -74,5 +69,16 @@ public abstract class BasePage
             var js = $"window.scrollTo({0}, {element.Location.Y-80})";
             JavaScriptExecutor.ExecuteScript(js);
         }
+    }
+    
+    public void CloseTab()
+    {
+        WebDriver.Close();
+        WebDriver.SwitchTo().Window(WebDriver.WindowHandles.FirstOrDefault());
+    }
+
+    public void MoveToPreviousTab()
+    {
+        WebDriver.SwitchTo().Window(WebDriver.WindowHandles.First());
     }
 }

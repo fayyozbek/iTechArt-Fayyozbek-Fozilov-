@@ -53,4 +53,24 @@ public class DemoqaTest: BaseTest
         ProgressBarPage.ClickStopBtn();
         Assert.True(ProgressBarPage.isProgressBar46Precent);
     }
+
+    [Test]
+    public void AddtionalTask()
+    {
+        HomePage.OpenPage();
+        Assert.True(HomePage.IsPageOpened);
+        HomePage.ClickAlertFrameWindowBtn();
+        AlertFramesWindowsPage.ClickBrowserWindowsFramesBtn();
+        Assert.True(BrowserWindowsPage.IsPageOpened);
+        BrowserWindowsPage.ClickTabBtn();
+        Assert.True(SamplePage.IsPageOpened);
+        SamplePage.CloseTab();
+        Assert.True(BrowserWindowsPage.IsPageOpened);
+        BrowserWindowsPage.ClickLinksBtn();
+        Assert.True(LinksPage.IsPageOpened);
+        LinksPage.ClickHomeLink();
+        Assert.True(HomePage.IsPageOpened);
+        HomePage.MoveToPreviousTab();
+        Assert.True(LinksPage.IsPageOpened);
+    }
 }

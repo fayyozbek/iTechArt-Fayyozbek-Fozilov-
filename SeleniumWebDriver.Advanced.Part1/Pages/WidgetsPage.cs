@@ -1,5 +1,3 @@
-using OpenQA.Selenium.DevTools.V108.IO;
-
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class WidgetsPage : BasePage

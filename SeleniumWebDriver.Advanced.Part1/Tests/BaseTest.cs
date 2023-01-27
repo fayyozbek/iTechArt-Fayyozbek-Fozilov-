@@ -20,6 +20,12 @@ public class BaseTest
     protected WidgetsPage WidgetsPage { get; private set; }
     
     protected ProgressBarPage ProgressBarPage { get; private set; }
+    
+    protected BrowserWindowsPage BrowserWindowsPage { get; private set; }
+    
+    protected SamplePage SamplePage { get; private set; }
+
+    protected LinksPage LinksPage { get; private set; }
 
     [SetUp]
     public void SetUp()
@@ -34,11 +40,14 @@ public class BaseTest
         FramesPage = new FramesPage(WebDriver);
         WidgetsPage = new WidgetsPage(WebDriver);
         ProgressBarPage = new ProgressBarPage(WebDriver);
+        BrowserWindowsPage = new BrowserWindowsPage(WebDriver);
+        SamplePage = new SamplePage(WebDriver);
+        LinksPage = new LinksPage(WebDriver);
     }
 
-    // [TearDown]
-    // public void TearDown()
-    // {
-    //     WebDriver.Quit();
-    // }
+    [TearDown]
+    public void TearDown()
+    {
+        WebDriver.Quit();
+    }
 }

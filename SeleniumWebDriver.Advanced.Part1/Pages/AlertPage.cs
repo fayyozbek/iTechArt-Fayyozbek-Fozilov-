@@ -45,9 +45,10 @@ public class AlertPage : BasePage
         }
     }
 
-    public bool IsConfirmAlertOpened =>{
+    public bool IsConfirmAlertOpened {
         get
-        {
+        {   
+            WebDriverWait.Until(webDriver => webDriver.SwitchTo().Alert());
             return WebDriver.SwitchTo().Alert().Text.Contains("Do you confirm action?");
         }
     }
