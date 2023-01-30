@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeleniumWebDriver.Advanced.Part1", "SeleniumWebDriver.Advanced.Part1\SeleniumWebDriver.Advanced.Part1.csproj", "{959B3C2D-3B9B-43F1-91D9-1DF06F2DEDA4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkWithComponentsSelenium", "WorkWithComponentsSelenium\WorkWithComponentsSelenium.csproj", "{959B3C2D-3B9B-43F1-91D9-1DF06F2DEDA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
