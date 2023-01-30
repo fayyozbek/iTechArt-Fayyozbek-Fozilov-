@@ -1,3 +1,5 @@
+using SeleniumWebDriver.Advanced.Part1.Utilities;
+
 namespace SeleniumWebDriver.Advanced.Part1.Pages;
 
 public class AlertPage : BasePage
@@ -6,9 +8,7 @@ public class AlertPage : BasePage
     {
     }
 
-    private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-    private readonly string _randomText = GenerateRandomText();
+    private readonly string _randomText = TextGenerator.GenerateRandomText();
     
     protected override By UniqueWebLocator => DemoqaXPath.XPathQueryGenerator("main-header");
     
@@ -69,14 +69,6 @@ public class AlertPage : BasePage
                 return true;
             }  
         }
-    }
-
-    private static string GenerateRandomText()
-    {
-        var random = new Random();
-        var length = 5;
-        return new string(Enumerable.Repeat(Chars, length)
-            .Select(s => s[random.Next(s.Length)]).ToArray());
     }
     public bool IsAfterConfirmAlertClosedTextAvailable => ConfirmResult.Text.Contains("Ok");
     
