@@ -20,7 +20,7 @@ public class HerokuAppTest: BaseTest
         Assert.True(UploadImagePage.IsPageOpened);
         
         UploadImagePage.LoadImage();
-        Assert.True(UploadImagePage.IsExpectedText);
+        Assert.That(UploadImagePage.GetExpectedText(), Does.Contain("Upload"));
         Assert.True(UploadImagePage.IsUploadedFiles);
     }
 

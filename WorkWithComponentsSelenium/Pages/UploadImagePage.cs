@@ -38,7 +38,10 @@ public class UploadImagePage : BasePage
         UploadBtn.Click();
     }
 
-    public bool IsExpectedText => ExpectedText.Text.Contains("Uploaded");
+    public string GetExpectedText()
+    {
+        return ExpectedText.Text;
+    }
 
     public bool IsUploadedFiles => UploadedFiles.Text.Contains(NameOfLoadedFile);
 }

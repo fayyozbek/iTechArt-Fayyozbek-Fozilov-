@@ -1,3 +1,4 @@
+using AngleSharp.Common;
 using Microsoft.VisualBasic.FileIO;
 using WorkWithComponentsSelenium.Configurations;
 
@@ -9,26 +10,31 @@ public class DownloadPage : BasePage
     {
     }
 
+    private string NameOfFile { get;  set; }
+
     protected override By UniqueWebLocator => HerokuAppXpath.XPathQueryGenerator("class" ,"example", "h3");
     
     protected override string UrlPath => "/download";
     
     public new bool IsPageOpened => WebDriver.FindElement(UniqueWebLocator).Text.Contains("File Downloader");
 
-    private readonly By _linkToDownloadLocator = HerokuAppXpath.XPathQueryGenerator("href", "my-screenshot");
+    private readonly By _linkToDownloadLocator = HerokuAppXpath.XPathQueryGenerator("href", "download");
 
-    private IWebElement LinkToDownload => WebDriver.FindElement(_linkToDownloadLocator);
+    private IReadOnlyCollection<IWebElement> LinksToDownload => WebDriver.FindElements(_linkToDownloadLocator);
 
     public void DownloadFile()
     {
-        LinkToDownload.Click();
+        var random = new Random();
+        var linkToDownload =LinksToDownload.GetItemByIndex(  random.Next(0, LinksToDownload.Count - 1));
+        NameOfFile = linkToDownload.Text;
+        linkToDownload.Click();
     }
 
     public bool IsFileExists
     {
         get
         {
-            var filePath = Path.Combine(AppConfiguration.PathToDefaultDirectory, "my-screenshot.png");
+            var filePath = Path.Combine(AppConfiguration.PathToDefaultDirectory, NameOfFile);
             WebDriverWait.Until(_ => FileSystem.FileExists(filePath));
             return FileSystem.FileExists(filePath);
         }

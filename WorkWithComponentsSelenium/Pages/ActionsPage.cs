@@ -35,6 +35,7 @@ public class ActionsPage : BasePage
         {
             ActionBuilder.SendKeys(Keys.ArrowRight);
         }
+        
         ActionBuilder.Build();
         ActionBuilder.Perform();
     }
