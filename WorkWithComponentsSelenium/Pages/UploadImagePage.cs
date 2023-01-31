@@ -12,7 +12,7 @@ public class UploadImagePage : BasePage
     
     protected override string UrlPath => "/upload";
 
-    private const string NameOfLoadedFile = "test.jpg";
+    public string NameOfLoadedFile = "test.jpg";
 
     private string DirToImagePath=>  AppConfiguration.PathToDefaultDirectory+NameOfLoadedFile;
 
@@ -43,5 +43,5 @@ public class UploadImagePage : BasePage
         return ExpectedText.Text;
     }
 
-    public bool IsUploadedFiles => UploadedFiles.Text.Contains(NameOfLoadedFile);
+    public string UploadedFilesText => UploadedFiles.Text;
 }

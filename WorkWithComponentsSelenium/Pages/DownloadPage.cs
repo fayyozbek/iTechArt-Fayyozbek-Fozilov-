@@ -18,7 +18,7 @@ public class DownloadPage : BasePage
     
     private new IWebElement UniqueWebElement => WebDriver.FindElement(UniqueWebLocator);
     
-    public new bool IsPageOpened => UniqueWebElement.Text.Contains("File Downloader");
+    public string PageOpenedText => UniqueWebElement.Text;
 
     private readonly By _linkToDownloadLocator = HerokuAppXpath.XPathQueryGenerator("href", "download");
 

@@ -1,17 +1,19 @@
+using WorkWithComponentsSelenium.Pages;
+
 namespace WorkWithComponentsSelenium;
 
 public class HerokuAppTest: BaseTest
 {
     [Test]
-    [TestCase("admin", "admin")]
-    public void BasicAuthorization(string username, string password)
+    [TestCase("admin", "admin", "Congratulations! You must have the proper credentials.")]
+    public void BasicAuthorization(string username, string password, string expectedText)
     {
         BasicAuthPage.OpenPage();
-        Assert.True(BasicAuthPage.IsPageOpened);
+        Assert.That(BasicAuthPage.PageOpenedText, Does.Contain("basic_auth"));
        
         BasicAuthPage.EnterUsernameAndPassword(username, password);
-        Assert.True(BasicAuthPage.IsAuthenticationPassed);
-        Assert.True(BasicAuthPage.IsExpectedTextAvailable);
+        Assert.That(BasicAuthPage.AuthenticationPassedText, Does.Contain("Internet"));
+        Assert.That(BasicAuthPage.ExpectedText, Is.EqualTo(expectedText));
     }
     
     [Test]
@@ -21,7 +23,7 @@ public class HerokuAppTest: BaseTest
         
         UploadImagePage.LoadImage();
         Assert.That(UploadImagePage.GetExpectedText(), Does.Contain("Upload"));
-        Assert.True(UploadImagePage.IsUploadedFiles);
+        Assert.That(UploadImagePage.UploadedFilesText, Does.Contain(UploadImagePage.NameOfLoadedFile));
     }
 
     [Test]
@@ -31,7 +33,7 @@ public class HerokuAppTest: BaseTest
         Assert.True(ActionsPage.IsPageOpened);
         
         ActionsPage.ChangeSlider();
-        Assert.True(ActionsPage.IsExpectedNumberInSlider);
+        Assert.That(ActionsPage.ExpectedNumberInSliderText, Does.Contain(((double)ActionsPage.ExpectedRndNumber / 2).ToString()));
     }
     
     [Test]
@@ -42,14 +44,14 @@ public class HerokuAppTest: BaseTest
         
         WindowsPage.OpenNewWindow();
         WindowsPage.MoveToLastOrDefaultTab();
-        Assert.True(NewWindowPage.IsPageOpened);
+        Assert.That(NewWindowPage.UniqueWebElementText, Does.Contain("Window"));
         
         WindowsPage.MoveToTab(0);
         Assert.True(WindowsPage.IsPageOpened);
         
         WindowsPage.OpenNewWindow();
         WindowsPage.MoveToTab(1);
-        Assert.True(NewWindowPage.IsPageOpened);
+        Assert.That(NewWindowPage.UniqueWebElementText, Does.Contain("Window"));
         
         WindowsPage.MoveToLastOrDefaultTab();
         NewWindowPage.CloseTab();
@@ -78,7 +80,7 @@ public class HerokuAppTest: BaseTest
         Assert.True(HoversPage.IsAvatarUserNameRight(indexOfUser));
         
         HoversPage.ClickOnViewProfile(indexOfUser);
-        Assert.True(UsersPage.IsExpectedUrlEqualToCurrentUrl);
+        Assert.That(BasePage.ExpectedUrl, Does.Contain(UsersPage.GetUrl));
         
         HoversPage.BackToPreviousPage();
         Assert.True(HoversPage.IsPageOpened);
@@ -88,7 +90,7 @@ public class HerokuAppTest: BaseTest
     public void Download()
     {
         DownloadPage.OpenPage();
-        Assert.True(DownloadPage.IsPageOpened);
+        Assert.That(DownloadPage.PageOpenedText, Does.Contain("File Downloader"));
         
         DownloadPage.DownloadFile();
         Assert.True(DownloadPage.IsFileExists);

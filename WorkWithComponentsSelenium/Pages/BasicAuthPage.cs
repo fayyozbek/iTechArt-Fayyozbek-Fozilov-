@@ -10,17 +10,15 @@ public class BasicAuthPage : BasePage
 
     protected override string UrlPath => "/basic_auth";
 
-    public new bool IsPageOpened => WebDriver.Url.Contains("basic_auth");
+    public string PageOpenedText => WebDriver.Url;
 
-    public bool IsAuthenticationPassed => WebDriver.Title.Contains("Internet");
+    public string AuthenticationPassedText => WebDriver.Title;
     
-    private readonly string _expectedText="Congratulations! You must have the proper credentials.";
-
     private readonly By expectedTextParagraphLocator = HerokuAppXpath.XPathQueryGenerator("class", "example", "p");
 
     private IWebElement ExpectedTextParagraph => WebDriver.FindElement(expectedTextParagraphLocator);
 
-    public bool IsExpectedTextAvailable => ExpectedTextParagraph.Text.Equals(_expectedText);
+    public string ExpectedText => ExpectedTextParagraph.Text;
 
     public void EnterUsernameAndPassword(string username, string password)
     {

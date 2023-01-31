@@ -12,5 +12,5 @@ public class NewWindowPage : BasePage
 
     private new IWebElement UniqueWebElement => WebDriver.FindElement(UniqueWebLocator);
     
-    public new bool IsPageOpened => UniqueWebElement.Text.Contains("Window");
+    public  string UniqueWebElementText => UniqueWebElement.Text;
 }

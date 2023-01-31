@@ -30,7 +30,7 @@ public abstract class BasePage
     
     protected abstract string UrlPath { get; }
 
-    protected static string ExpectedUrl;
+    public static string ExpectedUrl;
 
     public void OpenPage()  
     {
@@ -97,4 +97,6 @@ public abstract class BasePage
     {
         WebDriver.Close();
     }
+
+    public string GetUrl => WebDriver.Url;
 }

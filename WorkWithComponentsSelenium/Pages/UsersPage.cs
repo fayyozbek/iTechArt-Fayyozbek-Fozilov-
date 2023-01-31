@@ -11,4 +11,5 @@ public class UsersPage : BasePage
     protected override string UrlPath { get; }
 
     public bool IsExpectedUrlEqualToCurrentUrl => ExpectedUrl.Contains( WebDriver.Url);
+    
 }
