@@ -16,7 +16,9 @@ public class DownloadPage : BasePage
     
     protected override string UrlPath => "/download";
     
-    public new bool IsPageOpened => WebDriver.FindElement(UniqueWebLocator).Text.Contains("File Downloader");
+    private new IWebElement UniqueWebElement => WebDriver.FindElement(UniqueWebLocator);
+    
+    public new bool IsPageOpened => UniqueWebElement.Text.Contains("File Downloader");
 
     private readonly By _linkToDownloadLocator = HerokuAppXpath.XPathQueryGenerator("href", "download");
 

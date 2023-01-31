@@ -9,6 +9,8 @@ public class NewWindowPage : BasePage
     protected override By UniqueWebLocator => HerokuAppXpath.XPathQueryGenerator("class" ,"example", "h3");
     
     protected override string UrlPath { get; }
+
+    private new IWebElement UniqueWebElement => WebDriver.FindElement(UniqueWebLocator);
     
-    public new bool IsPageOpened => WebDriver.FindElement(UniqueWebLocator).Text.Contains("Window");
+    public new bool IsPageOpened => UniqueWebElement.Text.Contains("Window");
 }
