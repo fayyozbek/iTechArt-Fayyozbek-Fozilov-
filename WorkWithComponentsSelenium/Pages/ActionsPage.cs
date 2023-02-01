@@ -8,8 +8,6 @@ public class ActionsPage : BasePage
 
     protected override By UniqueWebLocator => HerokuAppXpath.XPathQueryGenerator( "sliderContainer");
 
-    public readonly int ExpectedRndNumber = new Random().Next(1, 9);
-    
     protected override string UrlPath => "/horizontal_slider";
 
     private readonly By _sliderLocator = HerokuAppXpath.XPathQueryGenerator("class", "sliderContainer", "input");
@@ -22,7 +20,7 @@ public class ActionsPage : BasePage
 
     public string ExpectedNumberInSliderText => SliderResult.Text;
 
-    public void ChangeSlider()
+    public void ChangeSlider(int number)
     {
         ActionBuilder.MoveToElement(Slider);
         ActionBuilder.Click();
@@ -31,7 +29,7 @@ public class ActionsPage : BasePage
         ActionBuilder.SendKeys(Keys.ArrowLeft);
         ActionBuilder.SendKeys(Keys.ArrowLeft);
         ActionBuilder.SendKeys(Keys.ArrowLeft);
-        for (int i = 0; i < ExpectedRndNumber; i++)
+        for (int i = 0; i < number; i++)
         {
             ActionBuilder.SendKeys(Keys.ArrowRight);
         }

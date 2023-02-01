@@ -17,13 +17,14 @@ public class HerokuAppTest: BaseTest
     }
     
     [Test]
-    public void UploadImage(){
+    [TestCase("test.jpg")]
+    public void UploadImage(string nameofFile){
         UploadImagePage.OpenPage();
         Assert.True(UploadImagePage.IsPageOpened);
         
-        UploadImagePage.LoadImage();
+        UploadImagePage.LoadImage(nameofFile);
         Assert.That(UploadImagePage.GetExpectedText(), Does.Contain("Upload"));
-        Assert.That(UploadImagePage.UploadedFilesText, Does.Contain(UploadImagePage.NameOfLoadedFile));
+        Assert.That(UploadImagePage.UploadedFilesText, Does.Contain(nameofFile));
     }
 
     [Test]
@@ -31,9 +32,10 @@ public class HerokuAppTest: BaseTest
     {
         ActionsPage.OpenPage();
         Assert.True(ActionsPage.IsPageOpened);
-        
-        ActionsPage.ChangeSlider();
-        Assert.That(ActionsPage.ExpectedNumberInSliderText, Does.Contain(((double)ActionsPage.ExpectedRndNumber / 2).ToString()));
+        var random = new Random();
+        var expectedRndNumber = random.Next(1, 9);
+        ActionsPage.ChangeSlider(expectedRndNumber);
+        Assert.That(ActionsPage.ExpectedNumberInSliderText, Does.Contain(((double)expectedRndNumber / 2).ToString()));
     }
     
     [Test]
@@ -92,7 +94,7 @@ public class HerokuAppTest: BaseTest
         DownloadPage.OpenPage();
         Assert.That(DownloadPage.PageOpenedText, Does.Contain("File Downloader"));
         
-        DownloadPage.DownloadFile();
+        DownloadPage.RandomDownloadFile();
         Assert.True(DownloadPage.IsFileExists);
     }
 }

@@ -23,8 +23,8 @@ public class DownloadPage : BasePage
     private readonly By _linkToDownloadLocator = HerokuAppXpath.XPathQueryGenerator("href", "download");
 
     private IReadOnlyCollection<IWebElement> LinksToDownload => WebDriver.FindElements(_linkToDownloadLocator);
-
-    public void DownloadFile()
+    
+    public void RandomDownloadFile()
     {
         var random = new Random();
         var linkToDownload =LinksToDownload.GetItemByIndex(  random.Next(0, LinksToDownload.Count - 1));

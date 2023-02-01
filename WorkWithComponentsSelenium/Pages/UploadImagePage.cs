@@ -12,9 +12,7 @@ public class UploadImagePage : BasePage
     
     protected override string UrlPath => "/upload";
 
-    public string NameOfLoadedFile = "test.jpg";
-
-    private string DirToImagePath=>  AppConfiguration.PathToDefaultDirectory+NameOfLoadedFile;
+    private string PathOfFolderWhere=>  AppConfiguration.PathToDefaultDirectory;
 
     private readonly By _uploadLocator = HerokuAppXpath.XPathQueryGenerator("id", "file-upload");
     
@@ -32,9 +30,9 @@ public class UploadImagePage : BasePage
     
     private IWebElement ExpectedText => WebDriver.FindElement(_expectedTextLocator);
 
-    public void LoadImage()
+    public void LoadImage(string nameOfFile)
     {
-        Upload.SendKeys(DirToImagePath);
+        Upload.SendKeys(PathOfFolderWhere+nameOfFile);
         UploadBtn.Click();
     }
 
