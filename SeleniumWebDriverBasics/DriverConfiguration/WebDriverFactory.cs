@@ -13,13 +13,13 @@ public class WebDriverFactory
     {
         IWebDriver driver;
 
-        var browser = AppConfigurator.Browser;
+        var browser = AppConfiguration.Browser;
         Logger.Instance.Debug($"Start browser '{browser}'");
 
         switch (browser)
         {
             case Browser.Chrome:
-               driver = new ChromeDriver(AppConfigurator.Settings);
+               driver = new ChromeDriver(AppConfiguration.Settings);
                Logger.Instance.Debug(((WebDriver)driver).AuthenticatorId);
                 return driver;
             case Browser.Edge:

@@ -4,7 +4,7 @@ using SeleniumWebDriverBasics.Utilities;
 
 namespace SeleniumWebDriverBasics.Configurations;
 
-public class AppConfigurator
+public class AppConfiguration
 {
     private const string UrlKey= "url";
     
