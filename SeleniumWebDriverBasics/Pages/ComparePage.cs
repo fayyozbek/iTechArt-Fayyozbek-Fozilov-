@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using SeleniumWebDriverBasics.Locators;
 
@@ -12,7 +13,6 @@ public class ComparePage : BasePage
     protected override By UniqueWebLocator => OnlinerXPath.XPathQueryGenerator( "__clear button");
     protected override string UrlPath { get; }
     
-    private const string ExpectedText = "Краткая информация об отличиях товара от конкурентных моделей и аналогов, сведения о позиционировании на рынке, преемственности и др.";
     
     private readonly By _descriptionButtonLocator = OnlinerXPath.XPathQueryGenerator("data-tip-term", "Описание");
 
@@ -20,10 +20,12 @@ public class ComparePage : BasePage
 
     public bool IsDecriptionOpened => DescriptionButton.GetAttribute("class").Contains("trigger_visible");
 
-    public bool IsDescriptionRightText => DescriptionButton.GetAttribute("data-tip-text").Contains(ExpectedText);
+    public string DescriptionDataTipText => DescriptionButton.GetAttribute("data-tip-text");
 
+    [AllureStep("Click Description Button")]
     public void ClickOnDescriptionButton()
     {
+        Logger.Instance.Info($"CLick on button {DescriptionButton}");
         DescriptionButton.Click();
     }
 }

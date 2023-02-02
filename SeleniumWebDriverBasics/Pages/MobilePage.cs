@@ -1,3 +1,4 @@
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -46,19 +47,24 @@ public class MobilePage : BasePage
 
     private IWebElement CompareButton => WebDriver.FindElement(_compareButtonLocator);
     
-    public bool IsItemsAdded => CompareButtonSpan.Text.Contains("2");
+    public string QuantityOfItemsAdded => CompareButtonSpan.Text;
 
     private IWebElement HonorLabel => WebDriver.FindElement(_honorLabelLocator);
 
+    [AllureStep("Select checkboxes")]
     public void ClickOnCheckBoxes()
     {
         ScrollToView(AppleCheckBox);
+        Logger.Instance.Info($"Select checkboxes {AppleCheckBox} and {HonorleCheckBox}");
+
         AppleCheckBox.Click();
         HonorleCheckBox.Click();
     }
 
+    [AllureStep("Remove honor tag")]
     public void ClickHonorRemoveTag()
     {
+        Logger.Instance.Info($"Remove {HonorLabel}");
         HonorLabel.Click();
     }
 
@@ -73,21 +79,27 @@ public class MobilePage : BasePage
             }
             catch (NoSuchElementException)
             {
+                Logger.Instance.Info("All honor products removed");
                 return true;
             }
         }
     }
 
+    [AllureStep("Select first and third products ")]
     public void ClickFirstAndThirdProduct()
     {
         Wait.Until(ExpectedConditions.ElementToBeClickable(_appleFirstElementInTheListLocator));
+        Logger.Instance.Info($"Select {AppleFirstElementInTheList}");
         AppleFirstElementInTheList.Click();
         Wait.Until(ExpectedConditions.ElementToBeClickable(_appleThirdElementInTheListLocator));
+        Logger.Instance.Info($"Select {AppleThirdElementInTheList}");
         AppleThirdElementInTheList.Click();
     }
 
+    [AllureStep("Click compare button")]
     public void ClickOnCompareButton()
     {
+        Logger.Instance.Info($"Click on {CompareButton}");
         CompareButton.Click();
     }
     

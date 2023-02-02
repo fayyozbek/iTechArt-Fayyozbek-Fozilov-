@@ -1,9 +1,16 @@
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+
 namespace SeleniumWebDriverBasics;
 
+[AllureNUnit]
 public class OnlinerTest : BaseTest
 {
     [Test]
-    public void Test()
+    [TestCase("Краткая информация об отличиях товара от конкурентных моделей и аналогов, сведения о позиционировании на рынке, преемственности и др.", 2)]
+    [AllureTag("Regression")]
+    [AllureOwner("Fayyozbek Fozilov")]
+    public void Test(string expectedText, int expectedQuantity)
     {
         // 1st step
         // Open home page
@@ -35,7 +42,7 @@ public class OnlinerTest : BaseTest
         MobilePage.ClickFirstAndThirdProduct();
         
         // Validate that two items added to compare 
-        Assert.True(MobilePage.IsItemsAdded, "products added in compare list");
+        Assert.That(MobilePage.QuantityOfItemsAdded, Does.Contain(expectedQuantity.ToString()), "Products added in compare list");
         
         // 6th step
         // Click on the compare button 
@@ -49,7 +56,7 @@ public class OnlinerTest : BaseTest
         Assert.True(ComparePage.IsDecriptionOpened, "Description box is opened");      
         
         // 8th step
-        Assert.True(ComparePage.IsDescriptionRightText, "Text in description box is right");
+        Assert.That(ComparePage.DescriptionDataTipText, Does.Contain(expectedText), "Text in description box is right");
         
         // 9th step
         ComparePage.BackPage();

@@ -24,6 +24,7 @@ public abstract class BasePage
     public void OpenPage()
     {
         var uri = new Uri(_baseUrl.TrimEnd('/') + UrlPath, UriKind.Absolute);
+        Logger.Instance.Info(uri.ToString());
         WebDriver.Navigate().GoToUrl(uri);
         WaitForPageLoad();
     }
@@ -61,7 +62,9 @@ public abstract class BasePage
         }
         catch (WebDriverTimeoutException e)
         {
-            throw new AssertionException($"Page with unique locator: '{UniqueWebLocator}' was not opened", e);
+            var errorMessage = $"Page with unique locator: '{UniqueWebLocator}' was not opened";
+            Logger.Instance.Fatal(errorMessage);
+            throw new AssertionException(errorMessage, e);
         }
     }
 }
