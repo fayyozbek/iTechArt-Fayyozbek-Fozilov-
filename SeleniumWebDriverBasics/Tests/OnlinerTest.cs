@@ -62,4 +62,19 @@ public class OnlinerTest : BaseTest
         ComparePage.BackPage();
         Assert.True(MobilePage.IsPageOpened, "You returned to previous page");
     }
+
+    [Test]
+    [TestCase("2846794", "ItechArt12345")]
+    public void FailTest(string username, string password)
+    {
+        HomePage.OpenPage();
+        Assert.True(HomePage.IsPageOpened);
+        
+        HomePage.ClickAuth();
+        Assert.True(AuthenticationPage.IsPageOpened);
+        
+        AuthenticationPage.InputUsernameAndPassword(username, password);
+        AuthenticationPage.CLickOnIamNotRobot();
+        Assert.True(AuthenticationPage.IsAuthenticationPass);
+    }
 }

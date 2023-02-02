@@ -12,7 +12,11 @@ public class AppConfiguration
     
     private const string StartArgumentKey= "startArguments";
 
+    private const string ConditionTimeoutKey = "conditionTimeout";
+
     public static readonly string BaseUrl=  Configurator.GetConfiguration().GetSection(UrlKey).Value;
+    
+    public static readonly int ConditionTimeout = Convert.ToInt32(Configurator.GetConfiguration().GetSection(ConditionTimeoutKey).Value);
     
     public static readonly Browser Browser =Enum.Parse<Browser>(Configurator.GetConfiguration().GetSection(BrowserKey).Value, true);
     

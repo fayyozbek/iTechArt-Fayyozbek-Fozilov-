@@ -60,17 +60,23 @@ public abstract class BasePage
     
     private void WaitForPageLoad()
     {
-        var driverWait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(3));
-
         try
         {
-            driverWait.Until(driver => driver.FindElement(UniqueWebLocator).Displayed);
+            WebDriverWait.Until(driver => driver.FindElement(UniqueWebLocator).Displayed);
         }
         catch (WebDriverTimeoutException e)
         {
             var errorMessage = $"Page with unique locator: '{UniqueWebLocator}' was not opened";
             Logger.Instance.Fatal(errorMessage);
             throw new AssertionException(errorMessage, e);
+        }
+    }
+    protected void ScrollToView(IWebElement element)
+    {
+        if (element.Location.Y > 200)
+        {
+            var js = $"window.scrollTo({0}, {element.Location.Y-80})";
+            JavaScriptExecutor.ExecuteScript(js);
         }
     }
 }

@@ -3,7 +3,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
 using SeleniumWebDriverBasics.Configurations;
-using SeleniumWebDriverBasics.Utilities;
 
 namespace SeleniumWebDriverBasics.DriverConfiguration;
 

@@ -13,6 +13,8 @@ public class BaseTest
     protected MobilePage MobilePage { get; private set; }
     
     protected ComparePage ComparePage { get; private set; }
+
+    protected AuthenticationPage AuthenticationPage { get; private set; }
     
     [SetUp]
     public void SetUp()
@@ -24,11 +26,12 @@ public class BaseTest
         HomePage = new HomePage(WebDriver);
         MobilePage = new MobilePage(WebDriver);
         ComparePage = new ComparePage(WebDriver);
+        AuthenticationPage = new AuthenticationPage(WebDriver);
     }
 
-    [TearDown]
-    public void TearDown()
-    {
-        WebDriver.Quit();
-    }
+    // [TearDown]
+    // public void TearDown()
+    // {
+    //     WebDriver.Quit();
+    // }
 }

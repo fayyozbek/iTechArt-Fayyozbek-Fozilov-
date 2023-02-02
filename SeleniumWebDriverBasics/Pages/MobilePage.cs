@@ -103,13 +103,5 @@ public class MobilePage : BasePage
         CompareButton.Click();
     }
     
-    public void ScrollToView(IWebElement element)
-    {
-        if (element.Location.Y > 200)
-        {
-            var js = $"window.scrollTo({0}, {element.Location.Y-80})";
-            IJavaScriptExecutor scriptExecutor= WebDriver as IJavaScriptExecutor;
-            scriptExecutor.ExecuteScript(js);
-        }
-    }
+    
 }
