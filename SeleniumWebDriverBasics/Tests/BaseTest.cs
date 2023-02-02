@@ -29,9 +29,9 @@ public class BaseTest
         AuthenticationPage = new AuthenticationPage(WebDriver);
     }
 
-    // [TearDown]
-    // public void TearDown()
-    // {
-    //     WebDriver.Quit();
-    // }
+    [TearDown]
+    public void TearDown()
+    {
+        WebDriver.Quit();
+    }
 }
