@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using Selenium.Lection.SimpleWrapper.Core;
 using SeleniumWrapper.Core.BrowserConfiguration;
 using SeleniumWrapper.Tests.Configurations;
 

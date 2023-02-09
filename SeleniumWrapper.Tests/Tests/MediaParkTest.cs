@@ -1,4 +1,5 @@
 using NUnit.Allure.Core;
+using NUnit.Framework;
 
 namespace SeleniumWrapper.Tests.Tests;
 

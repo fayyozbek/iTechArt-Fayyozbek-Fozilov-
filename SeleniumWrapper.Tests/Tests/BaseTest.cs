@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SeleniumWrapper.Core.BrowserConfiguration;
 using SeleniumWrapper.Tests.Configurations;
 using SeleniumWrapper.Tests.Pages;
