@@ -1,9 +1,7 @@
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 using Selenium.Lection.SimpleWrapper.Core;
-using SeleniumWrapper.Core.BrowserConfiguration;
-using SeleniumWrapper.Core.Elements;
-using SeleniumWrapper.Core.Utilities;
+using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumWrapper.Tests.Pages;
 
@@ -17,18 +15,22 @@ public class TvCategoryPage : BasePage
     {
     }
 
-    protected override By UniqueWebLocator => By.XPath("//*[contains(@class, \"goods-section-left-top\")]//h3");
+    protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("class","goods-section-left-top","h3");
     protected override string UrlPath => "/products/category/8";
 
-    private readonly By _firstProductAddToItemBtnLocator = By.XPath("//*[@data-product= \"16470\"]");
+    private readonly By _firstProductAddToItemBtnLocator = LocatorsXPath.XPathQueryGenerator("data-product","16470");
 
-    private readonly By _secondProductAddToItemBtnLocator = By.XPath("//*[@data-product= \"16154\"]");
+    private readonly By _secondProductAddToItemBtnLocator = LocatorsXPath.XPathQueryGenerator("data-product","16154");
 
-    private readonly By _cartBtnLocator = By.XPath("//*[@class= \"karzinka\"]");
+    private readonly By _cartBtnLocator = LocatorsXPath.XPathQueryGenerator("class","karzinka");
 
-    private readonly By _cartOpenedIndicatorLocator = By.XPath("//*[contains(@class, \"karzinka-open-active\")]");
+    private readonly By _cartOpenedIndicatorLocator = LocatorsXPath.XPathQueryGenerator("class, \"karzinka-open-active\")]");
     
-    private readonly By _totalCountLabelLocator= By.XPath("//*[@class= \"totalCount\"]");
+    private readonly By _totalCountLabelLocator= LocatorsXPath.XPathQueryGenerator("class","totalCount");
+    
+    private readonly By _cartItemsCountLocator= LocatorsXPath.XPathQueryGenerator("class","cart_items_count");
+
+    private readonly By _orderBtn = LocatorsXPath.XPathQueryGenerator("class","karzinka-open-bottom-block-a2");
     
     private Button FirstProductAddToItemBtn => new(_firstProductAddToItemBtnLocator, "First Product Add To Item Button");
     
@@ -39,14 +41,22 @@ public class TvCategoryPage : BasePage
     private Label TotalCountLabel => new(_totalCountLabelLocator, "total count");
 
     private Button CartBtn => new(_cartBtnLocator, "Cart Button");
+
+    private Label CartItemsCount => new(_cartItemsCountLocator, "Cart Items Count");
+
+    private Label OrderBtn => new(_orderBtn, "Order button");
     
     [AllureStep("Add two items in cart")]
     public void ClickAddToItem()
     {
         Logger.Instance.Info("Add first product to cart");
+        BrowserService.Browser.BrowserWait.Until(ExpectedConditions.ElementToBeClickable(_firstProductAddToItemBtnLocator));
         FirstProductAddToItemBtn.Click();
+        BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("1"));
+
         Logger.Instance.Info("Add Second product to cart");
-        SecondProductAddToItemBtn.Click();        
+        SecondProductAddToItemBtn.Click();
+        BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("2"));
     }
 
     [AllureStep("Open cart")]
@@ -54,8 +64,14 @@ public class TvCategoryPage : BasePage
     {
         Logger.Instance.Info("Open cart");
         CartBtn.Click();
+        BrowserService.Browser.BrowserWait.Until(_=>TotalCountLabel.GetText().Contains("2"));
     }
 
+    [AllureStep("Click Order button")]
+    public void ClickOrderBtn()
+    {
+        OrderBtn.Click();
+    }
     public bool IsCartOpened => CartOpenedIndicator.IsDisplayed();
 
     public string totalCount => TotalCountLabel.GetText();

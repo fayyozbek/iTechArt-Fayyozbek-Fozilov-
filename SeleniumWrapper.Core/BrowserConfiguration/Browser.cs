@@ -1,4 +1,3 @@
-using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumWrapper.Core.BrowserConfiguration;
@@ -7,6 +6,8 @@ public class Browser : IBrowser
 {
     public WebDriverWait BrowserWait { get; set; }
     public WebDriver WebDriver { get; }
+    
+    public IJavaScriptExecutor JavaScriptExecutor { get; set; }
 
     public Browser(WebDriver webDriver)
     {

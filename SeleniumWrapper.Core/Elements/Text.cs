@@ -1,8 +1,4 @@
-using OpenQA.Selenium;
-using SeleniumWrapper.Core.Elements;
-using SeleniumWrapper.Core.Utilities;
-
-namespace Selenium.Lection.SimpleWrapper.Core;
+namespace SeleniumWrapper.Core.Elements;
 
 public class Text : BaseElement
 {

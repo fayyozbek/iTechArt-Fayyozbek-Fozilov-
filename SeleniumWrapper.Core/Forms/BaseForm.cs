@@ -37,4 +37,10 @@ public abstract class BaseForm
             throw new AssertionException(errorMessage, e);
         }
     }
+
+    protected void ScrollToUp()
+    {
+        var js = $"window.scrollTo({0}, {0})";
+        BrowserService.Browser.JavaScriptExecutor.ExecuteScript(js);
+    }
 }

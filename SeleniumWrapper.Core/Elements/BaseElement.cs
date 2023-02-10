@@ -1,6 +1,3 @@
-using OpenQA.Selenium;
-using SeleniumWrapper.Core.BrowserConfiguration;
-using SeleniumWrapper.Core.Utilities;
 
 namespace SeleniumWrapper.Core.Elements;
 
@@ -27,6 +24,7 @@ public abstract class BaseElement
     public string GetText()
     {
         Logger.Instance.Info($"Take text from {Name} element");
+        Logger.Instance.Info(FindElement().Text);
         return FindElement().Text;
     }
 
@@ -39,5 +37,15 @@ public abstract class BaseElement
     {
         Logger.Instance.Info($"Find element with locator {Locator}");
         return WebDriver.FindElement(Locator);
+    }
+    
+    public void ScrollToView()
+    {
+        var element = FindElement();
+        if (element.Location.Y > 200)
+        {
+            var js = $"window.scrollTo({0}, {element.Location.Y-150})";
+            BrowserService.Browser.JavaScriptExecutor.ExecuteScript(js);
+        }
     }
 }

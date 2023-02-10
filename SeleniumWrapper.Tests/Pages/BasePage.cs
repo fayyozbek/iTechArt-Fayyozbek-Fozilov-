@@ -1,6 +1,4 @@
 using OpenQA.Selenium;
-using SeleniumWrapper.Core.BrowserConfiguration;
-using SeleniumWrapper.Core.Elements;
 using SeleniumWrapper.Core.Forms;
 using SeleniumWrapper.Core.Utilities;
 using SeleniumWrapper.Tests.Configurations;
@@ -33,4 +31,5 @@ public abstract class BasePage : BaseForm
         Browser.GoToUrl(uri);
         WaitForPageOpened();
     }
+    
 }

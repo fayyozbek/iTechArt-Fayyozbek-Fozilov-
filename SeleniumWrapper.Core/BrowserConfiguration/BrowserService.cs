@@ -16,6 +16,7 @@ public static class BrowserService
         BrowserModel = browserModel;
         var browser = (Browser)GetBrowser();
         browser.BrowserWait = new WebDriverWait(Browser.WebDriver, TimeSpan.FromSeconds(BrowserModel.ConditionTimeWait));
+        browser.JavaScriptExecutor = (IJavaScriptExecutor)Browser.WebDriver;
         return browser;
     }
 

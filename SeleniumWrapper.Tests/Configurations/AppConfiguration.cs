@@ -1,6 +1,4 @@
 using Microsoft.Extensions.Configuration;
-using OpenQA.Selenium.Chrome;
-using SeleniumWrapper.Core.BrowserConfiguration;
 using SeleniumWrapper.Tests.Utilities;
 
 namespace SeleniumWrapper.Tests.Configurations;

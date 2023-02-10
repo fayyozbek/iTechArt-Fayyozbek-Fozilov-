@@ -1,5 +1,4 @@
 using NUnit.Allure.Core;
-using NUnit.Framework;
 
 namespace SeleniumWrapper.Tests.Tests;
 
@@ -8,7 +7,8 @@ public class MediaParkTest : BaseTest
 {
     
     [Test]
-    public void Test()
+    [TestCase("Name", "LastName", "998888888", "adresss")]
+    public void Test(string firstName, string lastName, string mobile, string adress)
     {
         TvCategoryPage.OpenPage();
         Assert.True(TvCategoryPage.IsPageOpened);
@@ -16,6 +16,25 @@ public class MediaParkTest : BaseTest
         TvCategoryPage.ClickAddToItem();
         TvCategoryPage.ClickCartBtn();
         Assert.True(TvCategoryPage.IsCartOpened);
-        Assert.That(TvCategoryPage.totalCount, Is.EqualTo("2"));
+        Assert.That(TvCategoryPage.totalCount, Does.Contain("2"));
+        
+        TvCategoryPage.ClickOrderBtn();
+        Assert.True(OrderPage.IsPageOpened);
+        
+        OrderPage.FullFillInputs(firstName, lastName, mobile);
+        Assert.That(OrderPage.GetInputFirstName, Is.EqualTo(firstName));
+        Assert.That(OrderPage.GetInputLastName, Is.EqualTo(lastName));
+        Assert.That(OrderPage.GetInputMobile, Is.EqualTo("(99) 888-88-88"));
+        
+        OrderPage.ClickFirstNext();
+        OrderPage.FullFillAddress(adress);
+        Assert.That(OrderPage.GetInputAddress, Is.EqualTo(adress));
+        
+        OrderPage.ClickSecondNext();
+        OrderPage.CheckPaymentType();
+        OrderPage.FullFillCaptcha();
+        OrderPage.CheckAgreement();
+        OrderPage.ClickCheckout();
+        Assert.True(MessagePage.IsPageOpened);
     }
 }

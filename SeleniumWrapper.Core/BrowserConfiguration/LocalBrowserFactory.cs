@@ -1,7 +1,5 @@
 using System.ComponentModel;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using SeleniumWrapper.Core.Utilities;
 
 namespace SeleniumWrapper.Core.BrowserConfiguration;
 
