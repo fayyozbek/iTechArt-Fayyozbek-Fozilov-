@@ -27,8 +27,7 @@ public class LocalBrowserFactory : BrowserFactory
             {
                 case BrowserEnum.Chrome:
                     var options = driverSettings;
-                    //new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
-                    Logger.Instance.Debug("Open Chrome window");
+                    Logger.Instance.Debug("initializes Chrome window");
                     webDriver = new ChromeDriver(options);
                     return webDriver;
                 default:

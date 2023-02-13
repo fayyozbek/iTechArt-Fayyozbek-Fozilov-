@@ -8,6 +8,7 @@ public class BaseTest
     protected Browser Browser { get; private set; }
     
     protected TvCategoryPage TvCategoryPage { get; private set; }
+    
     protected OrderPage OrderPage { get; private set; }
 
     protected MessagePage MessagePage { get; private set; }
@@ -23,7 +24,6 @@ public class BaseTest
     }
 
     [TearDown]
-
     public void TearDown()
     {
        Browser.Quit();

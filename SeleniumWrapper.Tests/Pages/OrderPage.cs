@@ -61,16 +61,13 @@ public class OrderPage: BasePage
         InputLastName.Input(lastName);
         InputMobile.Input(mobile);
         BrowserService.Browser.BrowserWait.Until(_=>InputFirstName.GetValue().Contains(firstName));
-        Logger.Instance.Info($"Input first name: {firstName} last name : {lastName} and phone number {mobile}");
     }
 
     public void FullFillAddress(string address)
     {
         InputAddress.Input(address);
         BrowserService.Browser.BrowserWait.Until(_=>InputAddress.GetValue().Contains(address));
-
         DeliveryTypeCheckBox.Click();
-        
     }
 
     public void ClickFirstNext()

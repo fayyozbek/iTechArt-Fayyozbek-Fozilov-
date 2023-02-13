@@ -6,15 +6,12 @@ namespace SeleniumWrapper.Tests.Pages;
 
 public class TvCategoryPage : BasePage
 {
-    public TvCategoryPage(BaseElement uniqueElement, string pageName) : base(uniqueElement, pageName)
-    {
-    }
-
     public TvCategoryPage(Browser browser) : base(browser)
     {
     }
 
     protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("class","goods-section-left-top","h3");
+    
     protected override string UrlPath => "/products/category/8";
 
     private readonly By _firstProductAddToItemBtnLocator = LocatorsXPath.XPathQueryGenerator("data-product","16470");
@@ -48,12 +45,10 @@ public class TvCategoryPage : BasePage
     [AllureStep("Add two items in cart")]
     public void ClickAddToItem()
     {
-        Logger.Instance.Info("Add first product to cart");
         BrowserService.Browser.BrowserWait.Until(ExpectedConditions.ElementToBeClickable(_firstProductAddToItemBtnLocator));
         FirstProductAddToItemBtn.Click();
         BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("1"));
 
-        Logger.Instance.Info("Add Second product to cart");
         SecondProductAddToItemBtn.Click();
         BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("2"));
     }
@@ -61,7 +56,6 @@ public class TvCategoryPage : BasePage
     [AllureStep("Open cart")]
     public void ClickCartBtn()
     {
-        Logger.Instance.Info("Open cart");
         CartBtn.Click();
         BrowserService.Browser.BrowserWait.Until(_=>TotalCountLabel.GetText().Contains("2"));
     }
