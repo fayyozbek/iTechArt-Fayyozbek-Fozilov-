@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using Selenium.Lection.SimpleWrapper.Core;
 
 namespace SeleniumWrapper.Tests.Pages;
 

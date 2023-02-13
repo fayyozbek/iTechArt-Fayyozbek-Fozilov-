@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using SeleniumWrapper.Core.Forms;
-using SeleniumWrapper.Core.Utilities;
 using SeleniumWrapper.Tests.Configurations;
 
 namespace SeleniumWrapper.Tests.Pages;

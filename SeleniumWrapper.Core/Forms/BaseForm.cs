@@ -1,9 +1,4 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
-using Selenium.Lection.SimpleWrapper.Core;
-using SeleniumWrapper.Core.BrowserConfiguration;
-using SeleniumWrapper.Core.Elements;
-using SeleniumWrapper.Core.Utilities;
 
 namespace SeleniumWrapper.Core.Forms;
 

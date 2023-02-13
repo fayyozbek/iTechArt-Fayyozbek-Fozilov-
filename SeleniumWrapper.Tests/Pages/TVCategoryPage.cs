@@ -1,6 +1,5 @@
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
-using Selenium.Lection.SimpleWrapper.Core;
 using SeleniumExtras.WaitHelpers;
 
 namespace SeleniumWrapper.Tests.Pages;
@@ -74,5 +73,5 @@ public class TvCategoryPage : BasePage
     }
     public bool IsCartOpened => CartOpenedIndicator.IsDisplayed();
 
-    public string totalCount => TotalCountLabel.GetText();
+    public string TotalCount => TotalCountLabel.GetText();
 }

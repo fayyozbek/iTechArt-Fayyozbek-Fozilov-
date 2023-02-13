@@ -18,16 +18,6 @@ public static class LocatorsXPath
         return By.XPath($"//*[contains(@class, \"{searchWhat}\")]");
     }
     
-    public static By XPathQueryGenerator(string searchWhat, int index)
-    {
-        return By.XPath($"//*[contains(@class, \"{searchWhat}\")][{index}]");
-    }
-    
-    public static By XPathQueryGenerator(string searchWhat, int index, string addtionalTag)
-    {
-        return By.XPath($"//*[contains(@class, \"{searchWhat}\")][{index}]//{addtionalTag}");
-    }
-
     public static By XPathQueryUnique(string xpath)
     {
         return By.XPath(xpath);

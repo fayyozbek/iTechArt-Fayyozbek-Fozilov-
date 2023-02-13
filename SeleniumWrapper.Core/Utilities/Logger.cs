@@ -26,20 +26,20 @@ public sealed class Logger
 
     private LoggingConfiguration GetConfiguration()
     {
-        string str = "${date:format=yyyy-MM-dd HH\\:mm\\:ss} ${level:uppercase=true} - ${message}";
-        LoggingConfiguration configuration = new LoggingConfiguration();
+        var str = "${date:format=yyyy-MM-dd HH\\:mm\\:ss} ${level:uppercase=true} - ${message}";
+        var configuration = new LoggingConfiguration();
 
-        // for console
-        LogLevel info = LogLevel.Info;
-        LogLevel fatal1 = LogLevel.Fatal;
-        ConsoleTarget consoleTarget = new ConsoleTarget("logconsole");
+        // For console
+        var info = LogLevel.Info;
+        var fatal1 = LogLevel.Fatal;
+        var consoleTarget = new ConsoleTarget("logconsole");
         consoleTarget.Layout = (Layout)str;
         configuration.AddRule(info, fatal1, (Target)consoleTarget);
 
-        // for file
-        LogLevel debug = LogLevel.Debug;
-        LogLevel fatal2 = LogLevel.Fatal;
-        FileTarget fileTarget = new FileTarget("logfile");
+        // For file
+        var debug = LogLevel.Debug;
+        var fatal2 = LogLevel.Fatal;
+        var fileTarget = new FileTarget("logfile");
         fileTarget.DeleteOldFileOnStartup = true;
         fileTarget.FileName = (Layout)"../../../Log/log.log";
         fileTarget.Layout = (Layout)str;

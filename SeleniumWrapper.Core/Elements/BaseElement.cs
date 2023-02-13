@@ -1,4 +1,3 @@
-
 namespace SeleniumWrapper.Core.Elements;
 
 public abstract class BaseElement
