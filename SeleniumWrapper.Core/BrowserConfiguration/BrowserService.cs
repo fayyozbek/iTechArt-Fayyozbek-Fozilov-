@@ -1,5 +1,3 @@
-using OpenQA.Selenium.Support.UI;
-
 namespace SeleniumWrapper.Core.BrowserConfiguration;
 
 public static class BrowserService
