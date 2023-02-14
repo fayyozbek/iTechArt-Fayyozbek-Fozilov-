@@ -6,8 +6,11 @@ namespace Patterns.Core.Forms;
 
 public abstract class BaseForm
 {
+    protected Browser Browser { get; }
+
     protected BaseForm(Browser browser)
     {
+        Browser = browser;
     }
 
     protected abstract By UniqueWebLocator { get; }
@@ -15,17 +18,13 @@ public abstract class BaseForm
 
     protected BaseElement UniqueElement =>new Label(UniqueWebLocator, "Unique Element ") ;
 
-    protected BaseForm(BaseElement uniqueElement, string nameOfPage)
-    {
-    }
-
     public bool IsPageOpened => UniqueElement.IsDisplayed();
     
     public void WaitForPageOpened()
     {
         try
         {
-            BrowserService.Browser.BrowserWait.Until(driver => driver.FindElement(UniqueWebLocator).Displayed);
+            Browser.BrowserWait.Until(driver => driver.FindElement(UniqueWebLocator).Displayed);
         }
         catch (WebDriverTimeoutException e)
         {

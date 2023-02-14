@@ -1,3 +1,5 @@
+using NUnit.Allure.Attributes;
+
 namespace Patterns.Test.Steps;
 
 public class InventoryPageSteps
@@ -11,10 +13,23 @@ public class InventoryPageSteps
 
     private InventoryPage InventoryPage => new(Browser);
 
-    public string GoToItemDescription()
-    {
-        return InventoryPage.GetClickedItemName();
+    [AllureStep("Get expected result")]
+    public ItemModel GetItem()
+    { 
+        return new ItemModel()
+        {
+            Name = InventoryPage.GetClickedItemName(),
+            Description = InventoryPage.GetClickedItemDescrition(),
+            Price = InventoryPage.GetClickedItemPrice()
+        };
     }
+
+    [AllureStep("Go to item description")]
+    public void GoToItemDescription()
+    {
+        InventoryPage.ClickItem();
+    }
+    
     
     
 

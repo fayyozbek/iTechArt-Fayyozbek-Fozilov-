@@ -11,7 +11,10 @@ public class Browser : IBrowser
 
     public Browser(WebDriver webDriver)
     {
+        Logger.Instance.Info("Initiate Browser ");
         WebDriver = webDriver;
+        BrowserWait = new WebDriverWait(WebDriver, TimeSpan.FromSeconds(BrowserService.BrowserModel.ConditionTimeWait));
+        JavaScriptExecutor = (IJavaScriptExecutor)WebDriver;
         MaximizeWindow();
         SetImplicitTime();
     }
@@ -23,16 +26,19 @@ public class Browser : IBrowser
     
     public void GoToUrl(string uri)
     {
+        Logger.Instance.Info($"Go to url {uri}");
         WebDriver.Navigate().GoToUrl(uri);
     }
 
     public void Quit()
     {
+        Logger.Instance.Info("Quit browser");
         WebDriver.Quit();
     }
 
     private void MaximizeWindow()
     {
+        Logger.Instance.Info("Maximize Window");
         WebDriver.Manage().Window.Maximize();
     }
     
@@ -43,6 +49,7 @@ public class Browser : IBrowser
     
     public void BackPage()
     {
+        Logger.Instance.Info("Back to previous page"); 
         WebDriver.Navigate().Back();
     }
 

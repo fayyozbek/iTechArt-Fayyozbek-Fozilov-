@@ -1,5 +1,4 @@
-using Patterns.Test.Model;
-using Patterns.Test.Pages;
+using NUnit.Allure.Attributes;
 
 namespace Patterns.Test.Steps;
 
@@ -14,10 +13,11 @@ public class HomePageSteps
 
     private HomePage HomePage => new(Browser);
 
+    [AllureStep("Login step")]
     public InventoryPageSteps Login(UserModel user)
     {
-        HomePage
-            .InputUsernameAndPassword(user.Username, user.Password)
+        HomePage.OpenPage();
+        HomePage.InputUsernameAndPassword(user.Username, user.Password)
             .ClickLogin();
         return new InventoryPageSteps(Browser);
     }

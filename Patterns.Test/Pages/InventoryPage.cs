@@ -14,10 +14,24 @@ public class InventoryPage : BasePage
 
     private InventoryPageComponents InventoryPageComponents => new();
 
+    public void ClickItem()
+    {
+        InventoryPageComponents.ClickInventoryLink();
+    }
     public string GetClickedItemName()
     {
-        return InventoryPageComponents
-            .ClickInventoryLink()
-            .GetTextInventoryItemName;
+        return InventoryPageComponents.InventoryItemName.GetText();
     }
+
+    public string GetClickedItemDescrition() => InventoryPageComponents.InventoryItemDescription.GetText();
+
+    public string GetClickedItemPrice() => InventoryPageComponents.InventoryItemPrice.GetText();
+    
+    public InventoryPage ClickAddAndRemoveBtn()
+    {
+        Components.AddToCartBtn.Click();
+        return this;
+    }
+    
+    // public 
 }
