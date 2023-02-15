@@ -60,13 +60,13 @@ public class OrderPage: BasePage
         InputFirstName.Input(firstName);
         InputLastName.Input(lastName);
         InputMobile.Input(mobile);
-        BrowserService.Browser.BrowserWait.Until(_=>InputFirstName.GetValue().Contains(firstName));
+        Browser.BrowserWait.Until(_=>InputFirstName.GetValue().Contains(firstName));
     }
 
     public void FullFillAddress(string address)
     {
         InputAddress.Input(address);
-        BrowserService.Browser.BrowserWait.Until(_=>InputAddress.GetValue().Contains(address));
+        Browser.BrowserWait.Until(_=>InputAddress.GetValue().Contains(address));
         DeliveryTypeCheckBox.Click();
     }
 
@@ -97,7 +97,7 @@ public class OrderPage: BasePage
 
     public void  FullFillCaptcha()
     {
-        BrowserService.Browser.BrowserWait.Until(_ => CaptchaPassIndicator.IsDisplayed());
+        Browser.BrowserWait.Until(_ => CaptchaPassIndicator.IsDisplayed());
     }
 
     public void ClickCheckout()

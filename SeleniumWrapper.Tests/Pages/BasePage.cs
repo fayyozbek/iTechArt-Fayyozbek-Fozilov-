@@ -6,19 +6,12 @@ namespace SeleniumWrapper.Tests.Pages;
 
 public abstract class BasePage : BaseForm
 {
-    protected Browser Browser { get; }
-    
-    public BasePage(BaseElement uniqueElement, string pageName) : base(uniqueElement, pageName)
-    {
-    }
-
     protected override By UniqueWebLocator { get; }
     
     private readonly string _baseUrl = AppConfiguration.BaseUrl;
 
     protected BasePage(Browser browser) : base(browser)
     {
-        Browser = browser;
     }
 
     protected abstract string UrlPath { get; }

@@ -45,19 +45,19 @@ public class TvCategoryPage : BasePage
     [AllureStep("Add two items in cart")]
     public void ClickAddToItem()
     {
-        BrowserService.Browser.BrowserWait.Until(ExpectedConditions.ElementToBeClickable(_firstProductAddToItemBtnLocator));
+        Browser.BrowserWait.Until(ExpectedConditions.ElementToBeClickable(_firstProductAddToItemBtnLocator));
         FirstProductAddToItemBtn.Click();
-        BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("1"));
+        Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("1"));
 
         SecondProductAddToItemBtn.Click();
-        BrowserService.Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("2"));
+        Browser.BrowserWait.Until(_ => CartItemsCount.GetText().Contains("2"));
     }
 
     [AllureStep("Open cart")]
     public void ClickCartBtn()
     {
         CartBtn.Click();
-        BrowserService.Browser.BrowserWait.Until(_=>TotalCountLabel.GetText().Contains("2"));
+        Browser.BrowserWait.Until(_=>TotalCountLabel.GetText().Contains("2"));
     }
 
     [AllureStep("Click Order button")]
