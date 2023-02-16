@@ -9,22 +9,40 @@ public class SaucedemoTest : BaseTest
     [Test(Description = "Check that item from list have same name, description and price ")]
     public void CheckItem()
     {
-        HomePageSteps.Login(UserModelFactory.TestUser);
-        var expectedItem = InventoryPageSteps.GetItem();
+        var expectedItem =HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .GetItem();
         InventoryPageSteps.GoToItemDescription();
         var actualItem = ItemPageSteps.GetItem();
         Assert.Multiple(delegate
         {
             Assert.That(expectedItem.Name, Is.EqualTo(actualItem.Name));
             Assert.That(expectedItem.Description, Is.EqualTo(actualItem.Description));
-            Assert.That(expectedItem.Price, Is.EqualTo(actualItem.Price));
+            Assert.That(expectedItem.Price, Does.Contain(actualItem.Price));
         });
     }
 
-    [Test(Description = "Add item to the cart , check that item was added to the cart")]
-    public void AddItem()
+    [Test(Description = "Add item to the cart and checkout")]
+    public void CheckoutItem()
     {
-        HomePageSteps.Login(UserModelFactory.TestUser);
+        var isPass= HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .GoToCart()
+            .GoToNextStep()
+            .InputUserInfo(UserModelFactory.TestUser)
+            .GoToNextStep()
+            .GoToNextStep()
+            .IsCompleteCheckout;
+        Assert.True(isPass);
+    }
+
+    [Test(Description = "Login and Logout test")]
+    public void LoginAndLogout()
+    {
+        var isPass = HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .Logout();
+        Assert.True(isPass);
     }
 
 

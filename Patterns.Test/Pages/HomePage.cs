@@ -14,18 +14,24 @@ public class HomePage : BasePage
     
     private HomePageComponents HomePageComponents=> new ();
     
-    public HomePage InputUsernameAndPassword(string username, string password)
+    public HomePage InputPassword(string password)
     {
-        HomePageComponents.
-            InputUsername(username)
-            .InputPassword(password);
+        HomePageComponents.PasswordTxt.Input(password);
+        return this;
+    }
+    
+    public HomePage InputUsername(string username)
+    {
+        HomePageComponents.UsernameTxt.Input(username);
         return this;
     }
 
+    
    
-    public void ClickLogin()
+    public InventoryPage ClickLogin()
     {
-        HomePageComponents.ClickLoginBtn();
+        HomePageComponents.LoginBtn.Click();
+        return new InventoryPage(Browser);
     }
 
    

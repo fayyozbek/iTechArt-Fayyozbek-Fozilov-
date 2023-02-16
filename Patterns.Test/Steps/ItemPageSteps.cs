@@ -19,9 +19,9 @@ public class ItemPageSteps
         ItemPage.WaitForPageOpened();
         return new ItemModel()
         {
-            Name = ItemPage.ItemName(),
-            Description = ItemPage.ItemDescription(),
-            Price = ItemPage.ItemPrice()
+            Name = ItemPage.GetItemName(),
+            Description = ItemPage.GetItemDescription(),
+            Price = ItemPage.GetItemPrice()
         };
     }
 }

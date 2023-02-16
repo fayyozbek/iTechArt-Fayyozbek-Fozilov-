@@ -12,26 +12,20 @@ public class InventoryPage : BasePage
     protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("title");
     protected override string UrlPath { get; }
 
-    private InventoryPageComponents InventoryPageComponents => new();
-
     public void ClickItem()
     {
-        InventoryPageComponents.ClickInventoryLink();
+        Components.ItemLink.Click();
     }
-    public string GetClickedItemName()
-    {
-        return InventoryPageComponents.InventoryItemName.GetText();
-    }
-
-    public string GetClickedItemDescrition() => InventoryPageComponents.InventoryItemDescription.GetText();
-
-    public string GetClickedItemPrice() => InventoryPageComponents.InventoryItemPrice.GetText();
     
     public InventoryPage ClickAddAndRemoveBtn()
     {
         Components.AddToCartBtn.Click();
         return this;
     }
-    
-    // public 
+
+    public CartPage ClickCartBtn()
+    {
+        Components.CartBtn.Click();
+        return new CartPage(Browser);
+    }
 }

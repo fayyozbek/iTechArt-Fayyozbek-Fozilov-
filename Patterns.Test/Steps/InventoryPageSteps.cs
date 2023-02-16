@@ -18,9 +18,9 @@ public class InventoryPageSteps
     { 
         return new ItemModel()
         {
-            Name = InventoryPage.GetClickedItemName(),
-            Description = InventoryPage.GetClickedItemDescrition(),
-            Price = InventoryPage.GetClickedItemPrice()
+            Name = InventoryPage.GetItemName(),
+            Description = InventoryPage.GetItemDescription(),
+            Price = InventoryPage.GetItemPrice()
         };
     }
 
@@ -29,8 +29,23 @@ public class InventoryPageSteps
     {
         InventoryPage.ClickItem();
     }
-    
-    
-    
+
+    [AllureStep("Add item to cart and go to the cart ")]
+    public CartPageSteps GoToCart()
+    {
+        InventoryPage
+            .ClickAddAndRemoveBtn()
+            .ClickCartBtn();
+        return new CartPageSteps( Browser);
+    }
+
+    [AllureStep("Logout")]
+    public bool Logout()
+    {
+        return InventoryPage
+            .ClickBurgerMenu()
+            .ClickLogout()
+            .IsPageOpened;
+    }
 
 }

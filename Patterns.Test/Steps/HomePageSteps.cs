@@ -17,7 +17,9 @@ public class HomePageSteps
     public InventoryPageSteps Login(UserModel user)
     {
         HomePage.OpenPage();
-        HomePage.InputUsernameAndPassword(user.Username, user.Password)
+        HomePage
+            .InputUsername(user.Username)
+            .InputPassword(user.Password)
             .ClickLogin();
         return new InventoryPageSteps(Browser);
     }

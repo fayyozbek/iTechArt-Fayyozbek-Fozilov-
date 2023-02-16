@@ -17,12 +17,30 @@ public abstract class BasePage : BaseForm
 
     protected abstract string UrlPath { get; }
     
+    public string GetItemName() => Components.ItemName.GetText();
+    
+    public string GetItemDescription() => Components.ItemDescription.GetText();
+
+    public string GetItemPrice() => Components.ItemPrice.GetText();
+    
     public void OpenPage()
     {
         var uri = new Uri(_baseUrl.TrimEnd('/') + UrlPath, UriKind.Absolute);
         Logger.Instance.Info(uri.ToString());
         Browser.GoToUrl(uri);
         WaitForPageOpened(); 
+    }
+
+    public BasePage ClickBurgerMenu()
+    {
+        Components.BurgerMenuBtn.Click();
+        return this;
+    }
+
+    public HomePage ClickLogout()
+    {
+        Components.LogoutButton.Click();
+        return new HomePage(Browser);
     }
 
     

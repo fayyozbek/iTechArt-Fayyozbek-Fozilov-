@@ -8,11 +8,11 @@ public class HomePageComponents
 
     private readonly By _passwordTxtLocator = LocatorsXPath.XPathQueryGenerator("id", "password");
 
-    private Text UsernameTxt => new(_usernameTxtLocator, "Username textfield");
+    public Text UsernameTxt => new(_usernameTxtLocator, "Username textfield");
    
-    private Text PasswordTxt => new(_passwordTxtLocator, "Password textfield");
+    public Text PasswordTxt => new(_passwordTxtLocator, "Password textfield");
 
-    private Button LoginBtn => new(_loginBtnLocator, "Login Button");
+    public Button LoginBtn => new(_loginBtnLocator, "Login Button");
     
     public HomePageComponents InputUsername(string username)
     {

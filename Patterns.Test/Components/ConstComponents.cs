@@ -10,7 +10,7 @@ public class ConstComponents
     
     private readonly By _titleLblLocator = LocatorsXPath.XPathQueryGenerator("title");
     
-    private readonly By _addToCartBtnLocator = LocatorsXPath.XPathQueryGenerator( "btn_inventory");
+    private readonly By _addToCartBtnLocator = LocatorsXPath.XPathQueryGenerator( "btn_small");
 
     
     public Button CartBtn => new(_cartBtnLocator, "Cart button");
@@ -22,6 +22,21 @@ public class ConstComponents
     public Label TitleLbl => new(_titleLblLocator, "Title label");
     
     public Button AddToCartBtn => new(_addToCartBtnLocator, "Add to cart button");
+    
+    private readonly By _itemNameLocator = LocatorsXPath.XPathQueryGenerator( "name");
+    
+    private readonly By _itemLinkLocator = LocatorsXPath.XPathQueryGenerator("id", "item_4_title_link");
+
+    private readonly By _itemDescriptionLocator = LocatorsXPath.XPathQueryGenerator( "class","desc", "div[contains(@class, \"desc\")]");
+
+    private readonly By _itemPriceLocator = LocatorsXPath.XPathQueryGenerator("price");
+    public Label ItemName => new(_itemNameLocator, "Inventory Item Name");
+    
+    public Label ItemLink => new(_itemLinkLocator, "Inventory Item Link");
+
+    public Label ItemDescription => new(_itemDescriptionLocator, "Inventory Item Description");
+
+    public Label ItemPrice => new(_itemPriceLocator, "Inventory Item Price");
 
 
 }
