@@ -14,6 +14,8 @@ public class BaseTest
 
     protected ItemPageSteps ItemPageSteps { get; private set; }
     
+    protected CartPageSteps CartPageSteps { get; private set; }
+
     [SetUp]
     public void SetUp()
     {
@@ -22,6 +24,7 @@ public class BaseTest
        HomePageSteps = new(Browser);
        InventoryPageSteps = new(Browser);
        ItemPageSteps = new(Browser);
+       CartPageSteps = new(Browser);
     }
 
     [TearDown]

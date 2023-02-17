@@ -1,4 +1,5 @@
 using NUnit.Allure.Core;
+using Patterns.Test.Steps;
 using Patterns.Test.TestData;
 
 namespace Patterns.Test.Tests;
@@ -7,7 +8,7 @@ namespace Patterns.Test.Tests;
 public class SaucedemoTest : BaseTest
 {
     [Test(Description = "Check that item from list have same name, description and price ")]
-    public void CheckItem()
+    public void CheckItemTest()
     {
         var expectedItem =HomePageSteps
             .Login(UserModelFactory.TestUser)
@@ -23,7 +24,7 @@ public class SaucedemoTest : BaseTest
     }
 
     [Test(Description = "Add item to the cart and checkout")]
-    public void CheckoutItem()
+    public void CheckoutItemTest()
     {
         var isPass= HomePageSteps
             .Login(UserModelFactory.TestUser)
@@ -37,7 +38,7 @@ public class SaucedemoTest : BaseTest
     }
 
     [Test(Description = "Login and Logout test")]
-    public void LoginAndLogout()
+    public void LoginAndLogoutTest()
     {
         var isPass = HomePageSteps
             .Login(UserModelFactory.TestUser)
@@ -45,6 +46,31 @@ public class SaucedemoTest : BaseTest
         Assert.True(isPass);
     }
 
+    [Test(Description = "Add item to cart and remove item from the cart")]
+    public void AddRemoveTest()
+    {
+       var isRemoved= HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .GoToCart()
+            .IsRemovedItem();
+       Assert.True(isRemoved);
+    }
 
+    [Test(Description = "Check that clicked item added in cart")]
+    public void AddItemAndCheckTest()
+    {
+        var expectedItem =HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .GetItem();
+        InventoryPageSteps.GoToCart();
+        var actualItem= CartPageSteps.GetItem();
+        Assert.Multiple(delegate
+        {
+            Assert.That(actualItem.Name, Is.EqualTo(expectedItem.Name));
+            Assert.That(actualItem.Description, Is.EqualTo(expectedItem.Description));
+            Assert.That(actualItem.Price, Does.Contain(expectedItem.Price));
+        });
+
+    }
 
 }

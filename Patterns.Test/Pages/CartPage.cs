@@ -18,6 +18,20 @@ public class CartPage : BasePage
         CartPageComponents.CheckoutBtn.Click();
         return new CheckoutPage(Browser);
     }
+
+
+    public string GetQuantityTxt => CartPageComponents.QuantityLbl.GetText();
+
+    public string GetItemName() => Components.ItemName.GetText();
     
+    public string GetItemDescription() => CartPageComponents.ItemInCartDescription.GetText();
+
+    public string GetItemPrice() => Components.ItemPrice.GetText();
     
+    public CartPage ClickRemoveBtn()
+    {
+        Components.AddToCartBtn.Click();
+        return this;
+    }
+
 }

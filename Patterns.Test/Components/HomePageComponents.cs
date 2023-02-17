@@ -13,22 +13,4 @@ public class HomePageComponents
     public Text PasswordTxt => new(_passwordTxtLocator, "Password textfield");
 
     public Button LoginBtn => new(_loginBtnLocator, "Login Button");
-    
-    public HomePageComponents InputUsername(string username)
-    {
-        UsernameTxt.Input(username);
-        return this;
-    }
-
-    public HomePageComponents InputPassword(string password)
-    {
-        PasswordTxt.Input(password);
-        return this;
-    }
-
-    public HomePageComponents ClickLoginBtn()
-    {
-        LoginBtn.Click();
-        return this;
-    }
 }

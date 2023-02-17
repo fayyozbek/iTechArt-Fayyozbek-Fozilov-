@@ -29,7 +29,7 @@ public class ConstComponents
 
     private readonly By _itemDescriptionLocator = LocatorsXPath.XPathQueryGenerator( "class","desc", "div[contains(@class, \"desc\")]");
 
-    private readonly By _itemPriceLocator = LocatorsXPath.XPathQueryGenerator("price");
+    private readonly By _itemPriceLocator = LocatorsXPath.XPathQueryGenerator("class","price", "div[contains(@class,\"price\")]");
     public Label ItemName => new(_itemNameLocator, "Inventory Item Name");
     
     public Label ItemLink => new(_itemLinkLocator, "Inventory Item Link");
