@@ -4,12 +4,12 @@ namespace Patterns.Test.Steps;
 
 public class HomePageSteps
 {
-    private Browser Browser { get;  }
-
     public HomePageSteps(Browser browser)
     {
         Browser = browser;
     }
+
+    private Browser Browser { get; }
 
     private HomePage HomePage => new(Browser);
 
@@ -23,5 +23,4 @@ public class HomePageSteps
             .ClickLogin();
         return new InventoryPageSteps(Browser);
     }
-
 }

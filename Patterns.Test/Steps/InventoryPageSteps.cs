@@ -4,19 +4,19 @@ namespace Patterns.Test.Steps;
 
 public class InventoryPageSteps
 {
-    private Browser Browser { get;  }
-
     public InventoryPageSteps(Browser browser)
     {
         Browser = browser;
     }
 
+    private Browser Browser { get; }
+
     private InventoryPage InventoryPage => new(Browser);
 
     [AllureStep("Get expected result")]
     public ItemModel GetItem()
-    { 
-        return new ItemModel()
+    {
+        return new ItemModel
         {
             Name = InventoryPage.GetItemName(),
             Description = InventoryPage.GetItemDescription(),
@@ -36,7 +36,7 @@ public class InventoryPageSteps
         InventoryPage
             .ClickAddAndRemoveBtn()
             .ClickCartBtn();
-        return new CartPageSteps( Browser);
+        return new CartPageSteps(Browser);
     }
 
     [AllureStep("Logout")]
@@ -47,5 +47,4 @@ public class InventoryPageSteps
             .ClickLogout()
             .IsPageOpened;
     }
-
 }

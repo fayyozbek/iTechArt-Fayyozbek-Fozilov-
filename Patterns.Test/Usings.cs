@@ -5,4 +5,3 @@ global using Patterns.Core.Utilities;
 global using OpenQA.Selenium;
 global using Patterns.Test.Pages;
 global using Patterns.Test.Model;
-

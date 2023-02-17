@@ -1,5 +1,3 @@
-using Patterns.Test.Model;
-
 namespace Patterns.Test.TestData;
 
 public static class UserModelFactory
@@ -8,7 +6,7 @@ public static class UserModelFactory
     {
         Username = "standard_user",
         Password = "secret_sauce",
-        FirstName= "Somebody",
+        FirstName = "Somebody",
         LastName = "LAstttt",
         ZipCode = "1000000000"
     };

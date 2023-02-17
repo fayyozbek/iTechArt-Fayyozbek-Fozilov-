@@ -4,12 +4,12 @@ namespace Patterns.Test.Steps;
 
 public class ItemPageSteps
 {
-    private Browser Browser { get;  }
-
     public ItemPageSteps(Browser browser)
     {
         Browser = browser;
     }
+
+    private Browser Browser { get; }
 
     private ItemPage ItemPage => new(Browser);
 
@@ -17,7 +17,7 @@ public class ItemPageSteps
     public ItemModel GetItem()
     {
         ItemPage.WaitForPageOpened();
-        return new ItemModel()
+        return new ItemModel
         {
             Name = ItemPage.GetItemName(),
             Description = ItemPage.GetItemDescription(),

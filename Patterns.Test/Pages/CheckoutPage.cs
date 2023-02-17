@@ -10,7 +10,7 @@ public class CheckoutPage : BasePage
 
     protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("complete-header");
     protected override string UrlPath { get; }
-    
+
     private CheckoutPageComponents CheckoutPageComponents => new();
 
     public CheckoutPage InputFirstName(string firstName)
@@ -18,13 +18,13 @@ public class CheckoutPage : BasePage
         CheckoutPageComponents.FirstNameTxt.Input(firstName);
         return this;
     }
-    
+
     public CheckoutPage InputLastName(string lastName)
     {
         CheckoutPageComponents.LastNameTxt.Input(lastName);
         return this;
     }
-    
+
     public CheckoutPage InputZipCode(string zipCode)
     {
         CheckoutPageComponents.ZipCodeTxt.Input(zipCode);
@@ -36,6 +36,4 @@ public class CheckoutPage : BasePage
         CheckoutPageComponents.NextStepBtn.Click();
         return this;
     }
-    
-
 }

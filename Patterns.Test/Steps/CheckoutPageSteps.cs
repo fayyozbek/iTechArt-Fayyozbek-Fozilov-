@@ -1,15 +1,21 @@
+using NUnit.Allure.Attributes;
+
 namespace Patterns.Test.Steps;
 
 public class CheckoutPageSteps
 {
-    private  Browser Browser { get; }
     public CheckoutPageSteps(Browser browser)
     {
         Browser = browser;
     }
 
+    private Browser Browser { get; }
+
     private CheckoutPage CheckoutPage => new(Browser);
 
+    public bool IsCompleteCheckout => CheckoutPage.IsPageOpened;
+    
+    [AllureStep("Full fill user's details")]
     public CheckoutPageSteps InputUserInfo(UserModel user)
     {
         CheckoutPage
@@ -19,11 +25,10 @@ public class CheckoutPageSteps
         return this;
     }
 
+    [AllureStep("Checkout")]
     public CheckoutPageSteps GoToNextStep()
     {
         CheckoutPage.ClickNextStep();
         return this;
     }
-
-    public bool IsCompleteCheckout => CheckoutPage.IsPageOpened;
 }

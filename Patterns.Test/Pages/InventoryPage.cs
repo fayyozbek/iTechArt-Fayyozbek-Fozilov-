@@ -1,6 +1,3 @@
-using Patterns.Test.Components;
-using Patterns.Test.Pages;
-
 namespace Patterns.Test;
 
 public class InventoryPage : BasePage
@@ -10,13 +7,14 @@ public class InventoryPage : BasePage
     }
 
     protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("title");
+    
     protected override string UrlPath { get; }
 
     public void ClickItem()
     {
         Components.ItemLink.Click();
     }
-    
+
     public InventoryPage ClickAddAndRemoveBtn()
     {
         Components.AddToCartBtn.Click();

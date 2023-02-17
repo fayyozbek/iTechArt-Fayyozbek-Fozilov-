@@ -6,7 +6,6 @@ namespace Patterns.Test.Pages;
 
 public abstract class BasePage : BaseForm
 {
-   
     private readonly string _baseUrl = AppConfiguration.BaseUrl;
 
     protected BasePage(Browser browser) : base(browser)
@@ -16,19 +15,28 @@ public abstract class BasePage : BaseForm
     public ConstComponents Components => new();
 
     protected abstract string UrlPath { get; }
-    
-    public string GetItemName() => Components.ItemName.GetText();
-    
-    public string GetItemDescription() => Components.ItemDescription.GetText();
 
-    public string GetItemPrice() => Components.ItemPrice.GetText();
-    
+    public string GetItemName()
+    {
+        return Components.ItemName.GetText();
+    }
+
+    public string GetItemDescription()
+    {
+        return Components.ItemDescription.GetText();
+    }
+
+    public string GetItemPrice()
+    {
+        return Components.ItemPrice.GetText();
+    }
+
     public void OpenPage()
     {
         var uri = new Uri(_baseUrl.TrimEnd('/') + UrlPath, UriKind.Absolute);
         Logger.Instance.Info(uri.ToString());
         Browser.GoToUrl(uri);
-        WaitForPageOpened(); 
+        WaitForPageOpened();
     }
 
     public BasePage ClickBurgerMenu()
@@ -42,6 +50,4 @@ public abstract class BasePage : BaseForm
         Components.LogoutButton.Click();
         return new HomePage(Browser);
     }
-
-    
 }

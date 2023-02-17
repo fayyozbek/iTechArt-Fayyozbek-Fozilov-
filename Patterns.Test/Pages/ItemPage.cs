@@ -1,5 +1,3 @@
-using Patterns.Test.Components;
-
 namespace Patterns.Test.Pages;
 
 public class ItemPage : BasePage
@@ -9,6 +7,7 @@ public class ItemPage : BasePage
     }
 
     protected override By UniqueWebLocator => LocatorsXPath.XPathQueryGenerator("inventory_item_container");
+    
     protected override string UrlPath { get; }
 
     public ItemPage ClickAddAndRemoveBtn()
