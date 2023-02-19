@@ -29,6 +29,6 @@ public class BaseTest
     [TearDown]
     public void TearDown()
     {
-        //  Browser.Quit();
+        Browser.Quit();
     }
 }
