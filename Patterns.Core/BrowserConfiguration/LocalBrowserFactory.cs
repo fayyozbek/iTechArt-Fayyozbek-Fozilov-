@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using OpenQA.Selenium.Chrome;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace Patterns.Core.BrowserConfiguration;
 
