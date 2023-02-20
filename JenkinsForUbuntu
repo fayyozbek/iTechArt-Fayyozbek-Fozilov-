@@ -1,0 +1,40 @@
+pipeline {
+    agent {
+        label "ubuntu"
+    }
+    tools{
+        git 'Default'
+    }
+    stages {
+        stage('Checkout Stage') {
+            steps {
+                git credentialsId: 'homework', url: 'https://github.com/fayyozbek/iTechArt-Fayyozbek-Fozilov-.git', branch: 'Patterns'
+            }
+        }
+        stage('Build Stage') {
+            steps {
+                sh 'echo \"12345678\" | sudo -S -k dotnet build'
+            }
+        }
+        stage('Test Stage') {
+            steps {
+                sh ' echo \"12345678\" | sudo -S dotnet test ${WORKSPACE}/Patterns.Test/Patterns.Test.csproj'
+                
+            }
+        }
+        stage('reports') {
+            steps {
+                script {
+                        allure([
+                                includeProperties: false,
+                                jdk: '',
+                                properties: [],
+                                reportBuildPolicy: 'ALWAYS',
+                                results: [[path: 'Patterns.Test/bin/Debug/net6.0/allure-results']]
+                        ])
+                    }
+            }
+        }
+        
+    }
+}
