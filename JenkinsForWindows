@@ -1,0 +1,42 @@
+pipeline {
+    agent {
+        label "windows"
+    }
+    tools{
+        git 'windows'
+    }
+    environment {
+        dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe'
+    }
+    stages {
+        stage('Checkout Stage') {
+            steps {
+                git credentialsId: 'homework', url: 'https://github.com/fayyozbek/iTechArt-Fayyozbek-Fozilov-.git', branch: 'Patterns'
+            }
+        }
+        stage('Build Stage') {
+            steps {
+                bat 'dotnet build'
+            }
+        }
+        stage('Test Stage') {
+            steps {
+                bat 'dotnet test %WORKSPACE%\\Patterns.Test\\Patterns.Test.csproj'
+            }
+        }
+        stage('reports') {
+            steps {
+                script {
+                        allure([
+                                includeProperties: false,
+                                jdk: '',
+                                properties: [],
+                                reportBuildPolicy: 'ALWAYS',
+                                results: [[path: 'Patterns.Test/bin/Debug/net6.0/allure-results']]
+                        ])
+                    }
+            }
+        }
+        
+    }
+}
