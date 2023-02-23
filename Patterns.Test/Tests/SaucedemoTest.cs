@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using NUnit.Allure.Core;
 using Patterns.Test.TestData;
 
@@ -48,6 +49,7 @@ public class SaucedemoTest : BaseTest
             .GoToNextStep()
             .IsCompleteCheckout;
         isPass = false;
+        throw new NotImplementedException();
         Assert.True(isPass);
     }
 
