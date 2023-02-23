@@ -46,10 +46,7 @@ public class SaucedemoTest : BaseTest
             .GoToNextStep()
             .InputUserInfo(UserModelFactory.TestUser)
             .GoToNextStep()
-            .GoToNextStep()
             .IsCompleteCheckout;
-        isPass = false;
-        throw new NotImplementedException();
         Assert.True(isPass);
     }
 
