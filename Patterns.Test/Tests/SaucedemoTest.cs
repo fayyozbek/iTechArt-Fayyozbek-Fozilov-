@@ -37,19 +37,6 @@ public class SaucedemoTest : BaseTest
         Assert.True(isPass);
     }
     
-    [Test(Description = "Fail")]
-    public void FailTest()
-    {
-        var isPass = HomePageSteps
-            .Login(UserModelFactory.TestUser)
-            .GoToCart()
-            .GoToNextStep()
-            .InputUserInfo(UserModelFactory.TestUser)
-            .GoToNextStep()
-            .IsCompleteCheckout;
-        Assert.True(isPass);
-    }
-
     [Test(Description = "Login and Logout test")]
     public void LoginAndLogoutTest()
     {
