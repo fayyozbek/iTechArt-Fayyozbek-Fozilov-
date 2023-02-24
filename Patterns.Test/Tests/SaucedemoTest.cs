@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using NUnit.Allure.Core;
 using Patterns.Test.TestData;
 
@@ -31,6 +32,19 @@ public class SaucedemoTest : BaseTest
             .GoToNextStep()
             .InputUserInfo(UserModelFactory.TestUser)
             .GoToNextStep()
+            .GoToNextStep()
+            .IsCompleteCheckout;
+        Assert.True(isPass);
+    }
+    
+    [Test(Description = "Fail")]
+    public void FailTest()
+    {
+        var isPass = HomePageSteps
+            .Login(UserModelFactory.TestUser)
+            .GoToCart()
+            .GoToNextStep()
+            .InputUserInfo(UserModelFactory.TestUser)
             .GoToNextStep()
             .IsCompleteCheckout;
         Assert.True(isPass);
