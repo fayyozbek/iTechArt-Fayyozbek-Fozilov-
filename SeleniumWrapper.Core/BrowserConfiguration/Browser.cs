@@ -4,10 +4,10 @@ namespace SeleniumWrapper.Core.BrowserConfiguration;
 
 public class Browser : IBrowser
 {
-    public WebDriverWait BrowserWait { get; set; }
+    public WebDriverWait BrowserWait { get; }
     public WebDriver WebDriver { get; }
     
-    public IJavaScriptExecutor JavaScriptExecutor { get; set; }
+    public IJavaScriptExecutor JavaScriptExecutor { get; }
 
     public Browser(WebDriver webDriver)
     {
