@@ -4,10 +4,10 @@ namespace Patterns.Core.BrowserConfiguration;
 
 public class Browser : IBrowser
 {
-    public WebDriverWait BrowserWait { get; set; }
+    public WebDriverWait BrowserWait { get; }
     public WebDriver WebDriver { get; }
     
-    public IJavaScriptExecutor JavaScriptExecutor { get; set; }
+    public IJavaScriptExecutor JavaScriptExecutor { get; }
 
     public Browser(WebDriver webDriver)
     {
@@ -23,8 +23,8 @@ public class Browser : IBrowser
     {
         GoToUrl(uri.ToString());
     }
-    
-    public void GoToUrl(string uri)
+
+    private void GoToUrl(string uri)
     {
         Logger.Instance.Info($"Go to url {uri}");
         WebDriver.Navigate().GoToUrl(uri);
