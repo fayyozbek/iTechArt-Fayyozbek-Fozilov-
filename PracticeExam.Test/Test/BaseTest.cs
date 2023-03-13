@@ -16,7 +16,7 @@ public class BaseTest
     {
         Browser = BrowserService.StartBrowser(AppConfiguration.BrowserModel);
 
-        TaskPageStep = new(Browser);
+        TaskPageStep = new TaskPageStep(Browser);
     }
 
     [TearDown]

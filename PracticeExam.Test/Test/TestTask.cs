@@ -3,16 +3,15 @@ using NUnit.Allure.Core;
 namespace PracticeExam.Test.Test;
 
 [AllureNUnit]
-public class TestTask :BaseTest
+public class TestTask : BaseTest
 {
     [Test]
-    [TestCase(3, 10)]
-    public void CheckTestDone(int onWhichDate, int expectedDate)
+    [TestCase(-4)]
+    public void CheckTestDone(int onWhichDate)
     {
         var date = TaskPageStep
             .GoToPageAndUnselectElements()
-            .GoToCurrentDate()
             .SelectPickedDate(onWhichDate);
-        Assert.That(date, Is.EqualTo(expectedDate.ToString()));
+        Assert.That(date, Is.EqualTo(DateTime.Today.AddDays(onWhichDate)));
     }
 }

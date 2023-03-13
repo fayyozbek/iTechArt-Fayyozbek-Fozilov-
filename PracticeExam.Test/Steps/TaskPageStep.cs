@@ -10,64 +10,58 @@ public class TaskPageStep
         Browser = browser;
     }
 
-    private  Browser Browser { get; }
+    private Browser Browser { get; }
 
     private TaskPage TaskPage => new(Browser);
-    
+
     public TaskPageStep GoToPageAndUnselectElements()
     {
         TaskPage.OpenPage();
         TaskPage.ScrollToTestTaskLabel();
         while (true)
-        {
             try
             {
-                var date = TaskPage.GetTextSelectedDate().Split('-');
-                if (TaskPage.SelectedYearTxt.Contains(date[0]))
-                {
-                    TaskPage.ClickAccentText();
-                    
-                }
-                
-                
+                var date = DateTime.Parse(TaskPage.GetTextSelectedDate().TrimEnd(','));
+                TaskPage.ClickSelectedYear();
+                TaskPage.ClickPickYear(date.Year);
+                TaskPage.ClickPickMonth(date.Month);
+                TaskPage.ClickPickedDate(date.Day);
             }
             catch (NoSuchElementException)
             {
                 break;
-            } 
-        }
+            }
 
         return this;
     }
 
-    public TaskPageStep GoToCurrentDate()
+    private TaskPage PickDate(int toWhichDate)
     {
-        TaskPage.ClickAccentText();
+        var date = DateTime.Today.AddDays(toWhichDate);
+        TaskPage.ClickSelectedYear();
         while (true)
-        {
             try
             {
-                if (TaskPage.isDisplayedCurrentDate)
-                {
-                    break;
-                }
+                TaskPage.ClickPickYear(date.Year);
+                break;
             }
             catch (NoSuchElementException)
             {
-                TaskPage.CLickRightArrow();
+                if (toWhichDate < 0)
+                    TaskPage.ClickLastYearIntheList();
+                else
+                    TaskPage.ClickFirstYearIntheList();
+                TaskPage.ClickSelectedYear();
             }
-        }
 
-        TaskPage.ClickCurrentDate();    
-        return this;
+        TaskPage.ClickPickMonth(date.Month);
+        TaskPage.ClickPickedDate(date.Day);
+        return TaskPage;
     }
 
-    public string SelectPickedDate(int whichDate)
+    public DateTime SelectPickedDate(int whichDate)
     {
-        return TaskPage
-            .WaitUntilCurrentDateLoaded()
-            .SelectPickedDate(whichDate)
-            .SelectedDateText();
+        var date = DateTime.Parse(PickDate(whichDate).GetTextSelectedDate().TrimEnd(','));
+        return date;
     }
-
 }
