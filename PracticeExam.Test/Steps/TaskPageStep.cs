@@ -22,10 +22,11 @@ public class TaskPageStep
             try
             {
                 var date = DateTime.Parse(TaskPage.GetTextSelectedDate().TrimEnd(','));
-                TaskPage.ClickSelectedYear();
-                TaskPage.ClickPickYear(date.Year);
-                TaskPage.ClickPickMonth(date.Month);
-                TaskPage.ClickPickedDate(date.Day);
+                TaskPage
+                    .ClickSelectedYear()
+                    .ClickPickYear(date.Year)
+                    .ClickPickMonth(date.Month)
+                    .ClickPickedDate(date.Day);
             }
             catch (NoSuchElementException)
             {
@@ -54,8 +55,9 @@ public class TaskPageStep
                 TaskPage.ClickSelectedYear();
             }
 
-        TaskPage.ClickPickMonth(date.Month);
-        TaskPage.ClickPickedDate(date.Day);
+        TaskPage
+            .ClickPickMonth(date.Month)
+            .ClickPickedDate(date.Day);
         return TaskPage;
     }
 
