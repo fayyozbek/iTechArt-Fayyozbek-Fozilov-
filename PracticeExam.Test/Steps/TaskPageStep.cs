@@ -39,23 +39,24 @@ public class TaskPageStep
     private TaskPage PickDate(int toWhichDate)
     {
         var date = DateTime.Today.AddDays(toWhichDate);
+        var yearRange = DateTime.Today.Year;
         TaskPage.ClickSelectedYear();
-        while (true)
-            try
+        while (!(yearRange - 100 <= date.Year && date.Year<= yearRange+100))
+        {
+            if (toWhichDate < 0)
             {
-                TaskPage.ClickPickYear(date.Year);
-                break;
+                TaskPage.ClickLastYearIntheList();
+                yearRange -= 100;
             }
-            catch (NoSuchElementException)
+            else
             {
-                if (toWhichDate < 0)
-                    TaskPage.ClickLastYearIntheList();
-                else
-                    TaskPage.ClickFirstYearIntheList();
-                TaskPage.ClickSelectedYear();
+                TaskPage.ClickFirstYearIntheList();
+                yearRange += 100;
             }
-
+            TaskPage.ClickSelectedYear();
+        }
         TaskPage
+            .ClickPickYear(date.Year)
             .ClickPickMonth(date.Month)
             .ClickPickedDate(date.Day);
         return TaskPage;

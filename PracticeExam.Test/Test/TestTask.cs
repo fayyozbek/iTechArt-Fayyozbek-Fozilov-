@@ -6,7 +6,7 @@ namespace PracticeExam.Test.Test;
 public class TestTask : BaseTest
 {
     [Test]
-    [TestCase(-4)]
+    [TestCase(100000)]
     public void CheckTestDone(int onWhichDate)
     {
         var date = TaskPageStep
