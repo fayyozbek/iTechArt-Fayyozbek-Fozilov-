@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REST.API.Basics", "REST.API.Basics\REST.API.Basics.csproj", "{E7F40022-F7AF-41ED-8D0A-1FBB36094594}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REST.API.Advanced", "REST.API.Advanced\REST.API.Advanced.csproj", "{E7F40022-F7AF-41ED-8D0A-1FBB36094594}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
