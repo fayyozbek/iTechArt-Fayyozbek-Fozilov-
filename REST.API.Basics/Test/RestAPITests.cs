@@ -1,5 +1,6 @@
 using System.Net;
 using REST.API.Basics.Models;
+using REST.API.Basics.Utilities;
 using RestSharp;
 
 namespace REST.API.Basics;
@@ -19,13 +20,11 @@ public class RestAPITests
         var request = new RestRequest("/posts", Method.Get);
         var response = _client.Execute(request);
 
-        Assert.Equal(200, (int)response.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
 
         var posts = JsonConvert.DeserializeObject<List<Post>>(response.Content);
-        for (int i = 1; i < posts.Count; i++)
-        {
-            Assert.True(posts[i].Id > posts[i-1].Id);
-        }
+        var expectedList = posts.OrderBy(x => x.Id);
+        Assert.True(expectedList.SequenceEqual(posts));
     }
 
     [Fact]
@@ -76,7 +75,7 @@ public class RestAPITests
     public void GetAllUsers_ReturnsUsersList()
     {
         var request = new RestRequest("/users", Method.Get);
-        string json = File.ReadAllText("TestData/TestUser.json");
+        var json = FileReader.GetJsonTestData();
         var expectedUserDeserialize = JsonConvert.DeserializeObject<User>(json);
         var expectedUser = JsonConvert.SerializeObject(expectedUserDeserialize);
         
@@ -92,7 +91,7 @@ public class RestAPITests
     public void GetFifthUsers_ReturnsUser()
     {
         var request = new RestRequest("/users/5", Method.Get);
-        string json = File.ReadAllText("TestData/TestUser.json");
+        var json = FileReader.GetJsonTestData();
         var expectedUserDeserialize = JsonConvert.DeserializeObject<User>(json);
         var expectedUser = JsonConvert.SerializeObject(expectedUserDeserialize);
         
