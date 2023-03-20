@@ -9,6 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Bogus" Version="34.0.2" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
         <PackageReference Include="RestSharp" Version="109.0.1" />
         <PackageReference Include="xunit" Version="2.4.1" />
@@ -26,6 +27,7 @@
       <None Update="TestData\TestUser.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+        <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
     </ItemGroup>
 
 </Project>
