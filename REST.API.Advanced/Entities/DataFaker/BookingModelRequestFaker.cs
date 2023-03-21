@@ -12,6 +12,8 @@ public static class BookingModelRequestFaker
             .RuleFor(u => u.Roomid, 1)
             .RuleFor(u => u.Firstname, f => f.Person.FirstName)
             .RuleFor(u => u.Lastname, f => f.Person.LastName)
+            .RuleFor(u => u.Email, f => f.Person.Email)
+            .RuleFor(u => u.Phone, f => f.Person.Phone)
             .RuleFor(u => u.Depositpaid, false)
             .RuleFor(u => u.Bookingdates, BookingDatesFaker.CorrectModel());
     }

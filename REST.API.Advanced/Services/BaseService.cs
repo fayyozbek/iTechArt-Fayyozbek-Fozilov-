@@ -8,7 +8,7 @@ public abstract class BaseService
 
     public BaseService()
     {
-        _client = new RestClient("https://automationintesting.online/");
+        _client = new RestClient("https://automationintesting.online");
     }
 
     protected async Task<RestResponse> ExecuteAsync(RestRequest request)

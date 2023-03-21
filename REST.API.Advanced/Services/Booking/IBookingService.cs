@@ -5,8 +5,8 @@ namespace REST.API.Basics.Services.Booking;
 public interface IBookingService
 { 
     Task<RestResponse> CreateBooking(BookingModelRequest modelRequest);
-    Task<RestResponse> UpdateBooking(BookingModelRequest modelRequest);
-    Task<RestResponse> DeleteBooking(BookingModelRequest modelRequest);
-    Task<RestResponse> GetBooking(BookingModelRequest modelRequest);
-    Task<RestResponse> GetBookings();
+    Task<RestResponse> UpdateBooking(BookingModelRequest modelRequest, CookieModelRequest cookie);
+    Task<RestResponse> DeleteBooking(BookingModelRequest modelRequest, CookieModelRequest cookie);
+    Task<RestResponse> GetBooking(BookingModelRequest modelRequest, CookieModelRequest cookie );
+    Task<RestResponse> GetBookings(CookieModelRequest cookie);
 }

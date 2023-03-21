@@ -12,6 +12,11 @@ public class BookingModelRequest
     
     public string Lastname { get; set; }
     
+    public  string Email { get; set; }
+    
+    
+    public string Phone { get; set; }
+    
     public bool Depositpaid { get; set; }
     
     public BookingDates Bookingdates { get; set; }

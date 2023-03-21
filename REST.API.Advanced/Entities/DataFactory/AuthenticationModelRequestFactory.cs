@@ -6,7 +6,7 @@ public static class AuthenticationModelRequestFactory
 {
     public static AuthenticationModelRequest LoginData = new()
     {
-        Admin = "admin",
+        Username = "admin",
         Password = "password"
     };
 }

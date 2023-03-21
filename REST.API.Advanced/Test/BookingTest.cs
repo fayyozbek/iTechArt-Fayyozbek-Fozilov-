@@ -1,8 +1,4 @@
-using System.Net;
-using FluentAssertions;
-using Newtonsoft.Json;
 using REST.API.Basics.Entities.DataFactory;
-using REST.API.Basics.Models.Requests;
 using REST.API.Basics.Services.Auth;
 using REST.API.Basics.Services.Booking;
 
@@ -12,7 +8,6 @@ public class BookingTests
 {
     private readonly IAuthenticationService _authService;
     private readonly IBookingService _bookingService;
-    private readonly BookingModelRequest _bookingRequest = BookingModelRequestFactory.BookingModel;
     public BookingTests()
     {
        _authService = new AuthenticationService();
@@ -21,40 +16,35 @@ public class BookingTests
     
     [Fact]
     public async Task CreateBooking_ShouldAddBookingToList()
-    {
-        var login  = await _authService.Authenticate();
+    { 
+        var cookie= await _authService.GetCookie();
         var bookingRequest = BookingModelRequestFactory.BookingModel;
 
-
         var response = await _bookingService.CreateBooking(bookingRequest);
-
         response.StatusCode.Should().Be(HttpStatusCode.Created);
-        var createdResponse = JsonConvert.DeserializeObject<BookingModelRequest>(response.Content);
+        bookingRequest.Bookingid = JsonConvert.DeserializeObject<BookingModelRequest>(response.Content).Bookingid;
 
-        var getResponse = await _bookingService.GetBooking(new BookingModelRequest { Bookingid = createdResponse.Bookingid });
+        var getResponse = await _bookingService.GetBooking(bookingRequest , cookie );
         getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
     [Fact]
     public async Task UpdateBooking_ShouldChangeFirstName()
     {
-        // Arrange
-        await _authService.Authenticate();
+        var cookie= await _authService.GetCookie();
+        var bookingRequest = BookingModelRequestFactory.BookingModel;
 
-        // Create a new booking
-        var createResponse = await _bookingService.CreateBooking(_bookingRequest);
+        var createResponse = await _bookingService.CreateBooking(bookingRequest);
+        bookingRequest.Bookingid =
+            JsonConvert.DeserializeObject<BookingModelRequest>(createResponse.Content).Bookingid;
 
-        // Modify the booking's first name
-        _bookingRequest.Firstname = "NewFirstName";
+        bookingRequest.Firstname = "NewFirstName";
 
-        // Act
-        var response = await _bookingService.UpdateBooking(_bookingRequest);
+        var response = await _bookingService.UpdateBooking(bookingRequest , cookie);
 
-        // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-        // Verify that first name is changed
-        var getResponse = await _bookingService.GetBooking(new BookingModelRequest { Bookingid = int.Parse(createResponse.Content) });
+        
+        var getResponse = await _bookingService.GetBooking(bookingRequest, cookie);
         var bookingResponse = JsonConvert.DeserializeObject<BookingModelRequest>(getResponse.Content);
         bookingResponse.Firstname.Should().Be("NewFirstName");
     }
@@ -62,22 +52,20 @@ public class BookingTests
     [Fact]
     public async Task DeleteBooking_ShouldRemoveBookingFromList()
     {
-        // Arrange
-        await _authService.Authenticate();
+        var cookie= await _authService.GetCookie();
+        var bookingRequest = BookingModelRequestFactory.BookingModel;
 
-        // Create a new booking
-        var createResponse = await _bookingService.CreateBooking(_bookingRequest);
+        var createResponse = await _bookingService.CreateBooking(bookingRequest);
+        bookingRequest.Bookingid =
+            JsonConvert.DeserializeObject<BookingModelRequest>(createResponse.Content).Bookingid;
 
-        // Act
-        var response = await _bookingService.DeleteBooking(new BookingModelRequest { Bookingid = int.Parse(createResponse.Content) });
+        var response = await _bookingService.DeleteBooking(new BookingModelRequest { Bookingid =bookingRequest.Bookingid  }, cookie);
 
-        // Assert
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
+        response.StatusCode.Should().Be(HttpStatusCode.Accepted);
 
-        // Verify that booking is removed from the list
-        var getResponse = await _bookingService.GetBooking(new BookingModelRequest { Bookingid = int.Parse(createResponse.Content) });
+        var getResponse = await _bookingService.GetBooking(bookingRequest, cookie);
         getResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
     }
 
-    }
+}
 

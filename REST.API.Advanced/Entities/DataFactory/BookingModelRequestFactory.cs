@@ -5,5 +5,5 @@ namespace REST.API.Basics.Entities.DataFactory;
 
 public static class BookingModelRequestFactory
 {
-    public static readonly BookingModelRequest BookingModel=BookingModelRequestFaker.CorrectModel();
+    public static  BookingModelRequest BookingModel=>BookingModelRequestFaker.CorrectModel();
 }
