@@ -1,4 +1,5 @@
 using NUnit.Allure.Attributes;
+using Patterns.Test.Strategy.GetItemStrategy;
 
 namespace Patterns.Test.Steps;
 
@@ -12,17 +13,14 @@ public class CartPageSteps
     private Browser Browser { get; }
 
     private CartPage CartPage => new(Browser);
+    
+    private IGetItemStrategy GetItemStrategy => new CartPageStrategy(Browser);
+
 
     [AllureStep("Get item details")]
     public ItemModel GetItem()
     {
-        CartPage.WaitForPageOpened();
-        return new ItemModel
-        {
-            Name = CartPage.GetItemName(),
-            Description = CartPage.GetItemDescription(),
-            Price = CartPage.GetItemPrice()
-        };
+        return GetItemStrategy.GetItem();
     }
 
     [AllureStep("Go to next step")]
