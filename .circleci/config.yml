@@ -17,7 +17,7 @@ jobs:
     steps:
       # Checkout the code as the first step.
       - checkout
-      - build:
+      - run:
           name: Build project
           command: |
             dotnet build
