@@ -1,31 +1,32 @@
 namespace Patterns.Core.Elements;
 
-public abstract class BaseElement
+internal abstract class BaseElement : IElement
 {
-    protected By Locator { get; }
+    By IElement.Locator { get;  set; }
 
-    protected string Name { get; }
+    string IElement.Name { get; set; }
 
     protected BaseElement(By locator, string name)
     {
-        Locator = locator;
-        Name = name;
+        ((IElement)this).Locator = locator;
+        ((IElement)this).Name = name;
     }
 
     private WebDriver WebDriver => BrowserService.Browser.WebDriver;
 
     public void Click()
     {
-        Logger.Instance.Info($"Click {Name} element");
+        Logger.Instance.Info($"Click {((IElement)this).Name} element");
         FindElement().Click();
     }
 
     public string GetText()
     {
-        Logger.Instance.Info($"Take text from {Name} element");
+        Logger.Instance.Info($"Take text from {((IElement)this).Name} element");
         Logger.Instance.Info(FindElement().Text);
         return FindElement().Text;
     }
+    
 
     public bool IsDisplayed()
     {
@@ -34,8 +35,8 @@ public abstract class BaseElement
 
     protected IWebElement FindElement()
     {
-        Logger.Instance.Info($"Find element with locator {Locator}");
-        return WebDriver.FindElement(Locator);
+        Logger.Instance.Info($"Find element with locator {((IElement)this).Locator}");
+        return WebDriver.FindElement(((IElement)this).Locator);
     }
     
     public void ScrollToView()

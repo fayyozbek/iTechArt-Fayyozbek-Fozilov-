@@ -1,6 +1,6 @@
 namespace Patterns.Test.Components;
 
-public class CheckoutPageComponents
+public class CheckoutPageComponents : BaseComponents
 {
     private readonly By _firstNameTxtLocator = LocatorsXPath.XPathQueryGenerator("id", "first-name");
 
@@ -10,11 +10,11 @@ public class CheckoutPageComponents
 
     private readonly By _zipCodeNameTxtLocator = LocatorsXPath.XPathQueryGenerator("id", "postal-code");
 
-    public Text FirstNameTxt => new(_firstNameTxtLocator, "First Name");
+    public IText FirstNameTxt => Builder.CreateText(_firstNameTxtLocator, "First Name");
 
-    public Text LastNameTxt => new(_lastNameTxtLocator, "Last Name");
+    public IText LastNameTxt => Builder.CreateText(_lastNameTxtLocator, "Last Name");
 
-    public Text ZipCodeTxt => new(_zipCodeNameTxtLocator, "Postal Code");
+    public IText ZipCodeTxt => Builder.CreateText(_zipCodeNameTxtLocator, "Postal Code");
 
-    public Button NextStepBtn => new(_nextStepBtnLocator, "Next Step");
+    public IButton NextStepBtn => Builder.CreateButton(_nextStepBtnLocator, "Next Step");
 }

@@ -1,6 +1,6 @@
 namespace Patterns.Core.Elements;
 
-public class CheckBox : BaseElement
+internal class CheckBox : BaseElement, ICheckBox
 {
     public CheckBox(By locator, string name) : base(locator, name)
     {

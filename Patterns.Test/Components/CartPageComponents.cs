@@ -1,6 +1,6 @@
 namespace Patterns.Test.Components;
 
-public class CartPageComponents
+public class CartPageComponents :BaseComponents
 {
     private readonly By _checkoutBtnLocator = LocatorsXPath.XPathQueryGenerator("id", "checkout");
 
@@ -12,11 +12,11 @@ public class CartPageComponents
 
     private readonly By _quantityLblLocator = LocatorsXPath.XPathQueryGenerator("class", "cart_item", "cart_quantity");
 
-    public Label ItemInCartName => new(_itemInCartNameLocator, "Name of item in the cart");
+    public IElement ItemInCartName => Builder.CreateLabel(_itemInCartNameLocator, "Name of item in the cart");
 
-    public Button CheckoutBtn => new(_checkoutBtnLocator, "Checkout button");
+    public IButton CheckoutBtn => Builder.CreateButton(_checkoutBtnLocator, "Checkout button");
 
-    public Label QuantityLbl => new(_quantityLblLocator, "Quantitny Label");
+    public IElement QuantityLbl => Builder.CreateLabel(_quantityLblLocator, "Quantitny IElement");
 
-    public Label ItemInCartDescription => new(_itemInCartDescriptionLocator, "Inventory Item Description");
+    public IElement ItemInCartDescription => Builder.CreateLabel(_itemInCartDescriptionLocator, "Inventory Item Description");
 }

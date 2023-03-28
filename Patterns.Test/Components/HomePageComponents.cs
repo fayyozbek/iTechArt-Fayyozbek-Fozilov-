@@ -1,6 +1,6 @@
 namespace Patterns.Test.Components;
 
-public class HomePageComponents
+public class HomePageComponents : BaseComponents
 {
     private readonly By _loginBtnLocator = LocatorsXPath.XPathQueryGenerator("id", "login-button");
 
@@ -8,9 +8,9 @@ public class HomePageComponents
 
     private readonly By _usernameTxtLocator = LocatorsXPath.XPathQueryGenerator("id", "user-name");
 
-    public Text UsernameTxt => new(_usernameTxtLocator, "Username textfield");
+    public IText UsernameTxt => Builder.CreateText(_usernameTxtLocator, "Username textfield");
 
-    public Text PasswordTxt => new(_passwordTxtLocator, "Password textfield");
+    public IText PasswordTxt => Builder.CreateText(_passwordTxtLocator, "Password textfield");
 
-    public Button LoginBtn => new(_loginBtnLocator, "Login Button");
+    public IButton LoginBtn => Builder.CreateButton(_loginBtnLocator, "Login Button");
 }

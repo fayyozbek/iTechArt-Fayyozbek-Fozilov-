@@ -1,6 +1,6 @@
 namespace Patterns.Core.Elements;
 
-public class Button : BaseElement
+internal class Button : BaseElement, IButton
 {
     public Button(By locator, string name) : base(locator, name)
     {

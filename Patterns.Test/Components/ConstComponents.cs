@@ -1,6 +1,6 @@
 namespace Patterns.Test.Components;
 
-public class ConstComponents
+public class ConstComponents : BaseComponents
 {
     private readonly By _addToCartBtnLocator = LocatorsXPath.XPathQueryGenerator("btn_small");
 
@@ -22,21 +22,21 @@ public class ConstComponents
 
     private readonly By _titleLblLocator = LocatorsXPath.XPathQueryGenerator("title");
 
-    public Button CartBtn => new(_cartBtnLocator, "Cart button");
+    public IButton CartBtn => Builder.CreateButton(_cartBtnLocator, "Cart button");
 
-    public Button BurgerMenuBtn => new(_burgerMenuBtnLocator, "Burger Menu");
+    public IButton BurgerMenuBtn => Builder.CreateButton(_burgerMenuBtnLocator, "Burger Menu");
 
-    public Button LogoutButton => new(_logoutBtnLocator, "Logout button");
+    public IButton LogoutButton => Builder.CreateButton(_logoutBtnLocator, "Logout button");
 
-    public Label TitleLbl => new(_titleLblLocator, "Title label");
+    public IElement TitleLbl => Builder.CreateLabel(_titleLblLocator, "Title label");
 
-    public Button AddToCartBtn => new(_addToCartBtnLocator, "Add to cart button");
+    public IButton AddToCartBtn => Builder.CreateButton(_addToCartBtnLocator, "Add to cart button");
     
-    public Label ItemName => new(_itemNameLocator, "Inventory Item Name");
+    public IElement ItemName => Builder.CreateLabel(_itemNameLocator, "Inventory Item Name");
 
-    public Label ItemLink => new(_itemLinkLocator, "Inventory Item Link");
+    public IElement ItemLink => Builder.CreateLabel(_itemLinkLocator, "Inventory Item Link");
 
-    public Label ItemDescription => new(_itemDescriptionLocator, "Inventory Item Description");
+    public IElement ItemDescription => Builder.CreateLabel(_itemDescriptionLocator, "Inventory Item Description");
 
-    public Label ItemPrice => new(_itemPriceLocator, "Inventory Item Price");
+    public IElement ItemPrice => Builder.CreateLabel(_itemPriceLocator, "Inventory Item Price");
 }

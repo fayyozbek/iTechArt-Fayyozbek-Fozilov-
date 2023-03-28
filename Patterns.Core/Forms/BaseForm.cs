@@ -6,6 +6,7 @@ namespace Patterns.Core.Forms;
 
 public abstract class BaseForm
 {
+    protected IElementsBuilder Builder => new ElementsBuilder();
     protected Browser Browser { get; }
 
     protected BaseForm(Browser browser)
@@ -16,7 +17,7 @@ public abstract class BaseForm
     protected abstract By UniqueWebLocator { get; }
 
 
-    protected BaseElement UniqueElement =>new Label(UniqueWebLocator, "Unique Element ") ;
+    protected IElement UniqueElement =>Builder.CreateLabel(UniqueWebLocator, "Unique Element"); 
 
     public bool IsPageOpened => UniqueElement.IsDisplayed();
     

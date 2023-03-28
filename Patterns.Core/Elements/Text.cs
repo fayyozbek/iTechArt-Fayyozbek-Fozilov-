@@ -1,6 +1,6 @@
 namespace Patterns.Core.Elements;
 
-public class Text : BaseElement
+internal class Text : BaseElement, IText
 {
     public Text(By locator, string name) : base(locator, name)
     {
@@ -8,13 +8,13 @@ public class Text : BaseElement
 
     public void Input(string text)
     {
-        Logger.Instance.Info($"Fill with text in {Name} element");
+        Logger.Instance.Info($"Fill with text in {((IElement)this).Name} element");
         FindElement().SendKeys(text);
     }
 
     public string GetValue()
     {
-        Logger.Instance.Info($"Take value from {Name} element");
+        Logger.Instance.Info($"Take value from {((IElement)this).Name} element");
         return FindElement().GetAttribute("value");
     }
 }
