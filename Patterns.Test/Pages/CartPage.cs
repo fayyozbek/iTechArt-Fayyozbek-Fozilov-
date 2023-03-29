@@ -4,7 +4,7 @@ namespace Patterns.Test.Pages;
 
 public class CartPage : BasePage
 {
-    public CartPage(Browser browser) : base(browser)
+    public CartPage(IBrowser browser) : base(browser)
     {
     }
 

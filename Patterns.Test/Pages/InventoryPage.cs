@@ -2,7 +2,7 @@ namespace Patterns.Test;
 
 public class InventoryPage : BasePage
 {
-    public InventoryPage(Browser browser) : base(browser)
+    public InventoryPage(IBrowser browser) : base(browser)
     {
     }
 

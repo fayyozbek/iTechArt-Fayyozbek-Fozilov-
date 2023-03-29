@@ -7,13 +7,12 @@ namespace Patterns.Test.Pages;
 public abstract class BasePage : BaseForm
 {
     private readonly string _baseUrl = AppConfiguration.BaseUrl;
-
-    protected BasePage(Browser browser) : base(browser)
+    
+    public ConstComponents Components => new();
+    
+    protected BasePage(IBrowser browser) : base(browser)
     {
     }
-
-    public ConstComponents Components => new();
-
     protected abstract string UrlPath { get; }
 
     public string GetItemName()

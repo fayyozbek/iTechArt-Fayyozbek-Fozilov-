@@ -2,12 +2,12 @@ namespace Patterns.Test.Strategy.GetItemStrategy;
 
 public class CartPageStrategy : IGetItemStrategy
 {
-    public CartPageStrategy(Browser browser)
+    public CartPageStrategy(IBrowser browser)
     {
         Browser = browser;
     }
     private CartPage CartPage => new(Browser);
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
     
     public ItemModel GetItem()
     {

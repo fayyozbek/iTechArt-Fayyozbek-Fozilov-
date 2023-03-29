@@ -4,12 +4,12 @@ namespace Patterns.Test.Steps;
 
 public class InventoryPageSteps
 {
-    public InventoryPageSteps(Browser browser)
+    public InventoryPageSteps(IBrowser browser)
     {
         Browser = browser;
     }
 
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
 
     private InventoryPage InventoryPage => new(Browser);
 

@@ -5,12 +5,12 @@ namespace Patterns.Test.Steps;
 
 public class ItemPageSteps
 {
-    public ItemPageSteps(Browser browser)
+    public ItemPageSteps(IBrowser browser)
     {
         Browser = browser;
     }
 
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
 
     private IGetItemStrategy GetItemStrategy => new ItemPageStrategy(Browser);
 

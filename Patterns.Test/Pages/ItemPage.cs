@@ -4,7 +4,7 @@ namespace Patterns.Test.Pages;
 
 public class ItemPage : BasePage
 {
-    public ItemPage(Browser browser) : base(browser)
+    public ItemPage(IBrowser browser) : base(browser)
     {
     }
 

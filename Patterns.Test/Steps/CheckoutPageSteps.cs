@@ -4,12 +4,12 @@ namespace Patterns.Test.Steps;
 
 public class CheckoutPageSteps
 {
-    public CheckoutPageSteps(Browser browser)
+    public CheckoutPageSteps(IBrowser browser)
     {
         Browser = browser;
     }
 
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
 
     private CheckoutPage CheckoutPage => new(Browser);
 

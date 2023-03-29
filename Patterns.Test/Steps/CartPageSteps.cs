@@ -5,12 +5,12 @@ namespace Patterns.Test.Steps;
 
 public class CartPageSteps
 {
-    public CartPageSteps(Browser browser)
+    public CartPageSteps(IBrowser browser)
     {
         Browser = browser;
     }
 
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
 
     private CartPage CartPage => new(Browser);
     

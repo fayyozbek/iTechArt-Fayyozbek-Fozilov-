@@ -2,11 +2,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Patterns.Core.BrowserConfiguration;
 
-public class Browser : IBrowser
+internal class Browser : IBrowser
 {
+   
     public WebDriverWait BrowserWait { get; }
     public WebDriver WebDriver { get; }
-    
     public IJavaScriptExecutor JavaScriptExecutor { get; }
 
     public Browser(WebDriver webDriver)
@@ -53,5 +53,6 @@ public class Browser : IBrowser
         WebDriver.Navigate().Back();
     }
 
+    
     public bool IsStarted => WebDriver.SessionId != null;
 }

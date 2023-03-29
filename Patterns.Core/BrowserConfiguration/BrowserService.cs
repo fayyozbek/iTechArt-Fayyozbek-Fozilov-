@@ -10,14 +10,14 @@ public static class BrowserService
 
     private static bool IsApplicationStarted() => BrowserContainer.IsValueCreated && BrowserContainer.Value.IsStarted;
 
-    public static Browser StartBrowser(BrowserModel browserModel)
+    public static IBrowser StartBrowser(BrowserModel browserModel)
     {
         BrowserModel = browserModel;
         var browser = (Browser)GetBrowser();
         return browser;
     }
 
-    public static Browser Browser => (Browser)GetBrowser();
+    public static IBrowser Browser => (Browser)GetBrowser();
      
     private static IBrowser GetBrowser()
     {

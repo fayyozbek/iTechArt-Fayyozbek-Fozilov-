@@ -7,9 +7,9 @@ namespace Patterns.Core.Forms;
 public abstract class BaseForm
 {
     protected IElementsBuilder Builder => new ElementsBuilder();
-    protected Browser Browser { get; }
+    protected IBrowser Browser { get; }
 
-    protected BaseForm(Browser browser)
+    protected BaseForm(IBrowser browser)
     {
         Browser = browser;
     }

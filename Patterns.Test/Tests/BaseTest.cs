@@ -5,7 +5,7 @@ namespace Patterns.Test.Tests;
 
 public class BaseTest
 {
-    protected Browser Browser { get; private set; }
+    protected IBrowser Browser { get; private set; }
 
     protected HomePageSteps HomePageSteps { get; private set; }
 

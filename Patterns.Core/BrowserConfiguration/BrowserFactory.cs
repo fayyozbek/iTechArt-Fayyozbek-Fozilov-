@@ -6,7 +6,7 @@ public abstract class BrowserFactory
     {
     }
 
-    public Browser GetBrowser => new(WebDriver);
+    public IBrowser GetBrowser => new Browser(WebDriver);
     
     protected abstract WebDriver WebDriver { get; }
 }

@@ -4,12 +4,12 @@ namespace Patterns.Test.Steps;
 
 public class HomePageSteps
 {
-    public HomePageSteps(Browser browser)
+    public HomePageSteps(IBrowser browser)
     {
         Browser = browser;
     }
 
-    private Browser Browser { get; }
+    private IBrowser Browser { get; }
 
     private HomePage HomePage => new(Browser);
 

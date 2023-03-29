@@ -4,7 +4,7 @@ namespace Patterns.Test.Pages;
 
 public class CheckoutPage : BasePage
 {
-    public CheckoutPage(Browser browser) : base(browser)
+    public CheckoutPage(IBrowser browser) : base(browser)
     {
     }
 
